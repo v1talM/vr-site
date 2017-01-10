@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+Route::get('/vr/{id}', function ($id){
+    return [
+        '/img/l1_r_01_01.jpg',
+        '/img/l1_l_01_01.jpg',
+        '/img/l1_u_01_01.jpg',
+        '/img/l1_d_01_01.jpg',
+        '/img/l1_f_01_01.jpg',
+        '/img/l1_b_01_01.jpg'
+    ];
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
