@@ -1,6 +1,6 @@
 <template>
     <section id="feature" class="container features-container">
-        <h1>项目特色</h1>
+        <h1>我们的优势</h1>
         <p class="feature-intro">Surprisingly easy to use. Unsurprisingly powerful.</p>
         <div class="wrapper" id="features">
                 <div class="col-md-4 col-sm-6 col-xs-6 text-center">
