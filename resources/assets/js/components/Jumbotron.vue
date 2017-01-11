@@ -90,10 +90,11 @@
         padding: .725em 3.5em;
         font-size: 1em;
         border-radius: 0.225em;
+        transition: all .3s ease-in-out;
     }
     a.more:focus, a.more:hover {
-        background-color: #fff;
-        color: #18bc9c;
+        padding: 1em 3.75em;
+        font-weight: 300;
     }
 </style>
 <script>

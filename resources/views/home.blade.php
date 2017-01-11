@@ -23,12 +23,11 @@
     </div>
 
     <script src="./js/app.js"></script>
-    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
     <script>
         $(window).scroll(function() {
             var yheight=getScrollTop(); //滚动条距顶端的距离
 
-            if ( yheight >= 150)
+            if ( yheight >= 200)
                 document.body.className = 'scrolled'
             else
                 document.body.className = ''
