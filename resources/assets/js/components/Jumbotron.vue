@@ -6,21 +6,19 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-md-offset-3 text-center">
                     <div class="text-intro">
                         <h1>
-                            Happy Connecting!
+                            VR-Pano!
                         </h1>
+
                         <p>
-                            Business Card Got a Promotion
+                            Easy-to-use, powerful and awesome.
                         </p>
                         <a href="#" class="more">
                             了解更多
                         </a>
                     </div>
-                </div>
-                <div class="col-md-6">
-
                 </div>
             </div>
         </div>
@@ -86,12 +84,12 @@
     a.more {
         text-decoration: none;
         color: #fff;
-        width: 5em;
-        height: 2em;
+        width: 7em;
+        height: 2.5em;
         border: 2px solid #fff;
-        padding: .75em 2.5em;
+        padding: .725em 3.5em;
         font-size: 1em;
-        border-radius: 1.525em;
+        border-radius: 0.225em;
     }
     a.more:focus, a.more:hover {
         background-color: #fff;
