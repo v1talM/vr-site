@@ -36,7 +36,7 @@
         margin-bottom: 0;
         min-height: 50px;
         background-color: #fff;
-        opacity: .8;
+        opacity: .9;
     }
     .navbar-brand{
         height: 50px;
