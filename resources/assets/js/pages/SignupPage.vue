@@ -1,0 +1,25 @@
+<template>
+    <div id="signup">
+        <navbar></navbar>
+        <signup></signup>
+    </div>
+</template>
+<style>
+    #signup {
+        height: 100%;
+        background-color: #3598DC;
+        padding-top: 35px;
+    }
+</style>
+<style>
+    @import './../../css/font-awesome.css'
+</style>
+<script>
+    import navbar from './../components/navbar.vue'
+    import signup from './../components/Signup.vue'
+    export default{
+        components: {
+            navbar, signup
+        }
+    }
+</script>
