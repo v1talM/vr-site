@@ -1,13 +1,19 @@
 <template>
     <div>
-        <navbar></navbar>
-        <jumbotron></jumbotron>
-        <features></features>
-        <profile></profile>
-        <introduce></introduce>
-        <start></start>
-        <copyright></copyright>
+        <div v-show="!$loadingRouteData">
+            <navbar></navbar>
+            <jumbotron></jumbotron>
+            <features></features>
+            <profile></profile>
+            <introduce></introduce>
+            <start></start>
+            <copyright></copyright>
+
+        </div>
+        <loader v-show="$loadingRouteData"></loader>
     </div>
+
+
 </template>
 <style>
     @import './../../css/bootstrap.css'
@@ -20,9 +26,10 @@
     import introduce from './../components/Introduce.vue'
     import start from './../components/Start.vue'
     import copyright from './../components/Footer.vue'
+    import loader from './../components/Loader.vue'
     export default {
         components: {
-            navbar, jumbotron, features, profile, introduce, start, copyright
+            navbar, jumbotron, features, profile, introduce, start, copyright, loader
         }
     }
 </script>

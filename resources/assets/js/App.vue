@@ -1,7 +1,7 @@
 <template>
-    <router-view>
+        <router-view>
 
-    </router-view>
+        </router-view>
 </template>
 <style>
     html, body, #app{
