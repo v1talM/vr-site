@@ -45,6 +45,7 @@
     }
     .navbar-brand, .navbar-nav > li > a{
         color: #eaeaea;
+        font-weight: bold;
     }
 
     .scrolled .navbar-brand {

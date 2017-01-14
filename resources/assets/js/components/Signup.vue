@@ -12,7 +12,7 @@
                             <i class="fa fa-envelope-o"></i>
                         </label>
                         <div class="col-sm-11">
-                            <input class="form-control" placeholder="Your E-mail address" type="email">
+                            <input class="form-control" autocomplete="off" placeholder="Your E-mail address" type="email">
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,7 +61,7 @@
 #signup p {
     text-align: center;
 }
-#signup a {
+#signup .container a {
     text-align: center;
     font-weight: bold;
     color: white;
@@ -104,6 +104,7 @@
 }
 </style>
 <script>
+
     export default{
 
 
