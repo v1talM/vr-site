@@ -1,16 +1,15 @@
 <template>
+    <router-view>
 
-    <welcome></welcome>
-
+    </router-view>
 </template>
 <style>
-@import './../css/bootstrap.css'
+    html, body, #app{
+        height: 100%;
+    }
+
 </style>
 <script>
-    import welcome from './pages/Welcome.vue'
     export default {
-        components: {
-            welcome
-        }
     }
 </script>

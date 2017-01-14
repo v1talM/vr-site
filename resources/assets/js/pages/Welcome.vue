@@ -9,7 +9,9 @@
         <copyright></copyright>
     </div>
 </template>
-
+<style>
+    @import './../../css/bootstrap.css'
+</style>
 <script>
     import navbar from './../components/navbar.vue'
     import jumbotron from './../components/Jumbotron.vue'

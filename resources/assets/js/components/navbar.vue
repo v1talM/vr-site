@@ -12,11 +12,12 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#">项目展示</a></li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><router-link to="/login" class="login-btn">登 录</router-link></li>
+                        <li><router-link to="/signup" class="signup-btn">加入 VR-Pano</router-link></li>
                     </ul>
                 </div>
             </div>
@@ -39,12 +40,13 @@
         opacity: .9;
     }
     .navbar-brand{
-        height: 50px;
-        padding: 14.5px 15px;
+        height: 42px;
+        padding: 10.5px 15px;
     }
     .navbar-brand, .navbar-nav > li > a{
         color: #eaeaea;
     }
+
     .scrolled .navbar-brand {
         color: #004a3c;
     }
@@ -59,9 +61,28 @@
         background-color: transparent !important;
         color: #1c1c1c !important;
     }
+    .navbar-nav > li > a.signup-btn {
+        border: 1px solid #fff;
+        border-radius: 1px;
+        padding: 9.5px 15px;
+    }
+    .scrolled .navbar-nav > li > a.signup-btn {
+        background-color: #18bc9c;
+        color: #fff !important;
+        border-color: #18bc9c;
+        padding: 9.5px 15px;
+    }
+    .scrolled .navbar-nav > li > a.signup-btn:hover, .navbar-nav > li > a.signup-btn:hover {
+        background-color: #18bc9c !important;
+        color: #fff !important;
+        border-color: #18bc9c;
+    }
     @media (min-width: 768px){
         .navbar-nav > li > a{
-            padding: 14.5px 15px;
+            padding: 10.5px 20px;
+        }
+        .navbar-nav.navbar-left{
+            margin-left: 40px;
         }
     }
 
