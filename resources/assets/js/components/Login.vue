@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <div class="row">
-            <form class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+            <form  @submit.prevent="handleUserLogin()"
+                   class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                 <div class="row">
                     <h1>
                         <i class="fa fa-lock"></i>
@@ -12,7 +13,12 @@
                             <i class="fa fa-envelope-o"></i>
                         </label>
                         <div class="col-sm-11">
-                            <input class="form-control" autocomplete="off" placeholder="Your account E-mail" type="email">
+                            <input class="form-control"
+                                   autocomplete="off"
+                                   placeholder="您的登录邮箱"
+                                   type="email"
+                                   v-model="email"
+                            >
                         </div>
                     </div>
                     <div class="form-group">
@@ -20,7 +26,12 @@
                             <i class="fa fa-key"></i>
                         </label>
                         <div class="col-sm-11">
-                            <input class="form-control" placeholder="Account password" type="password">
+                            <input
+                                    class="form-control"
+                                    placeholder="您的登录密码"
+                                    type="password"
+                                    v-model="password"
+                            >
                         </div>
                     </div>
                     <button class="btn btn-primary btn-lg"> 登 录 </button>
@@ -97,8 +108,28 @@
 
 </style>
 <script>
-
+    import {mapState, mapActions} from 'vuex'
     export default{
-
+        computed: mapState({
+           user: state => state.vrUser.user
+        }),
+        data () {
+            return {
+                email: '',
+                password: ''
+            }
+        },
+        methods: {
+            ...mapActions([
+                'loginUser'
+            ]),
+            handleUserLogin () {
+                const userObj = {
+                    'email': this.email,
+                    'password': this.password
+                }
+                this.loginUser(userObj)
+            }
+        }
     }
 </script>

@@ -15,7 +15,12 @@ export default {
     getVrList () {
         return Vue.resource(API_ROOT + '/vr/1').get();
     },
-    registUser ( userInfo ) {
-        return Vue.resource(API_ROOT + '/test').get();
+    //注册用户接口调用方法
+    registUser ( userObj ) {
+        return Vue.resource(API_ROOT + '/signup').save(userObj);
+    },
+    //登录用户接口调用方法
+    loginUser ( userObj ) {
+        return Vue.resource(API_ROOT + '/login').save(userObj);
     }
 }
