@@ -17,13 +17,16 @@
         }
     </style>
 </head>
-<body>
+<body onload="test()">
     <div id="app">
         <app></app>
     </div>
 
     <script src="./js/app.js"></script>
     <script>
+        function test() {
+            console.log('onload')
+        }
         $(window).scroll(function() {
             var yheight=getScrollTop(); //滚动条距顶端的距离
 
