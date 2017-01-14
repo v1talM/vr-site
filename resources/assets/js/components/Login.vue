@@ -12,7 +12,7 @@
                             <i class="fa fa-envelope-o"></i>
                         </label>
                         <div class="col-sm-11">
-                            <input class="form-control" placeholder="Your account E-mail" type="email">
+                            <input class="form-control" autocomplete="off" placeholder="Your account E-mail" type="email">
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,7 +53,7 @@
 #login p {
     text-align: center;
 }
-#login a {
+#login .container a {
     text-align: center;
     font-weight: bold;
     color: white;

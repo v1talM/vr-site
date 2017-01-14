@@ -25,5 +25,7 @@ Route::get('/vr/{id}', function ($id){
     ];
 });
 Auth::routes();
-
+Route::get('/test', function (){
+   return 'called';
+});
 Route::get('/home', 'HomeController@index');

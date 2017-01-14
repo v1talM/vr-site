@@ -4,10 +4,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import vrStore from './vrStore'
+import vrUser from './vrUser'
 Vue.use(Vuex)
-
 export default new Vuex.Store({
     modules: {
-        vrStore
+        vrStore, vrUser
     }
 })

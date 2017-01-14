@@ -14,5 +14,8 @@ const API_ROOT = '';
 export default {
     getVrList () {
         return Vue.resource(API_ROOT + '/vr/1').get();
+    },
+    registUser ( userInfo ) {
+        return Vue.resource(API_ROOT + '/test').get();
     }
 }
