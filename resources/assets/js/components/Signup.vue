@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <div class="row">
-            <form class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+            <form   @submit.prevent="handleRegistUser()"
+                    class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                 <div class="row">
                     <h1>
                         <i class="fa fa-flag"></i>
@@ -9,10 +10,30 @@
                     </h1>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">
+                            <i class="fa fa-user"></i>
+                        </label>
+                        <div class="col-sm-11">
+                            <input
+                                    class="form-control"
+                                    autocomplete="off"
+                                    placeholder="输入您的昵称"
+                                    type="text"
+                                    v-model="name"
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">
                             <i class="fa fa-envelope-o"></i>
                         </label>
                         <div class="col-sm-11">
-                            <input class="form-control" autocomplete="off" placeholder="Your E-mail address" type="email">
+                            <input
+                                    class="form-control"
+                                    autocomplete="off"
+                                    placeholder="输入您的邮箱地址"
+                                    type="email"
+                                    v-model="email"
+                            >
                         </div>
                     </div>
                     <div class="form-group">
@@ -20,7 +41,12 @@
                             <i class="fa fa-key"></i>
                         </label>
                         <div class="col-sm-11">
-                            <input class="form-control" placeholder="Your account password" type="password">
+                            <input
+                                    class="form-control"
+                                    placeholder="输入您的登录密码"
+                                    type="password"
+                                    v-model="password"
+                            >
                         </div>
                     </div>
                     <div class="form-group">
@@ -28,7 +54,12 @@
                             <i class="fa fa-key"></i>
                         </label>
                         <div class="col-sm-11">
-                            <input class="form-control" placeholder="Confirm password" type="password">
+                            <input
+                                    class="form-control"
+                                    placeholder="确认您的登录密码"
+                                    type="password"
+                                    v-model="password_confirmation"
+                            >
                         </div>
                     </div>
                     <button class="btn btn-primary btn-lg"> 注册账号 </button>
@@ -104,9 +135,31 @@
 }
 </style>
 <script>
-
+    import api from './../api'
     export default{
-
+        data () {
+            return {
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+            }
+        },
+        methods: {
+            handleRegistUser () {
+                const userObj = {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    password_confirmation: this.password_confirmation
+                }
+                api.registUser(userObj).then( response => {
+                    console.log(response.body)
+                }).catch( error => {
+                    console.log(error.body)
+                });
+            }
+        }
 
     }
 </script>
