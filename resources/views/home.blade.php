@@ -85,18 +85,15 @@
 </head>
 <body>
     <div class="loader"></div>
-    <script>
-        (function() {
-            console.log(1)
-        })
-    </script>
     <div id="app">
         <app></app>
     </div>
 
     <script src="./js/app.js"></script>
     <script>
-
+        $(document).ready(function () {
+            $(".loader").css('display','none');
+        })
         $(window).scroll(function() {
             var yheight=getScrollTop(); //滚动条距顶端的距离
 
