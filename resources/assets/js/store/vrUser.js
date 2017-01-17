@@ -3,21 +3,25 @@
  */
 import api from './../api'
 const state = {
-    user: []
+    user: null
 }
 
 const mutations = {
-    SET_VR_USER ( state, userObj) {
+    SET_AUTH_USER ( state, userObj) {
         state.user = userObj
     }
 
 }
 
 const actions = {
-    loginUser({commit}, userObj){
-        api.loginUser(userObj).then( response => {
-            console.log(response)
-        })
+    loginUser({}, userObj){
+        return api.getAccessToken(userObj)
+    },
+    getUserData({}, headers){
+        return api.getUserData(headers)
+    },
+    setAuthUser({commit}, userObj){
+        commit('SET_AUTH_USER', userObj)
     }
 }
 

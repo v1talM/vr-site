@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <form  @submit.prevent="handleUserLogin()"
+            <form @submit.prevent="handleUserLogin()"
                    class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                 <div class="row">
                     <h1>
@@ -109,9 +109,11 @@
 </style>
 <script>
     import {mapState, mapActions} from 'vuex'
+    import {getHeader} from './../config'
     export default{
         computed: mapState({
-           user: state => state.vrUser.user
+           user: state => state.vrUser.user,
+           $loadingRouteData: state => state.vrStore.loadingRouteData
         }),
         data () {
             return {
@@ -121,14 +123,39 @@
         },
         methods: {
             ...mapActions([
-                'loginUser'
+                'setLoadingRouteData',
+                'unsetLoadingRouteData',
+                'setShowModal',
+                'setModalContent',
+                'loginUser',
+                'getUserData',
             ]),
             handleUserLogin () {
                 const userObj = {
                     'email': this.email,
                     'password': this.password
                 }
-                this.loginUser(userObj)
+                const authUser = {}
+                this.setLoadingRouteData()
+                this.loginUser(userObj).then( response => {
+                    if( response.status === 200){
+                        authUser.access_token = response.body.access_token
+                        authUser.refresh_token = response.body.refresh_token
+                        window.localStorage.setItem('authUser', JSON.stringify(authUser))
+                        const headers = getHeader()
+                        this.getUserData(headers).then( response => {
+                            authUser.email = response.body.email
+                            authUser.name = response.body.name
+                            window.localStorage.setItem('authUser', JSON.stringify(authUser))
+                            this.$store.dispatch('setAuthUser', authUser)
+                            this.unsetLoadingRouteData()
+                            this.$router.push({ name: 'home' })
+                        }).catch( error => {
+                            this.unsetLoadingRouteData()
+                        })
+                    }
+                })
+
             }
         }
     }

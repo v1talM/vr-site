@@ -1,14 +1,17 @@
 <template>
     <div id="signup">
+
         <navbar></navbar>
         <signup></signup>
+
     </div>
 </template>
 <style>
     #signup {
-        height: 100%;
+        height: auto;
+        min-height: 100%;
         background-color: #3598DC;
-        padding-top: 35px;
+        padding: 25px 0;
     }
 </style>
 <style>
