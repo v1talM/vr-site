@@ -6,7 +6,8 @@
 </template>
 <style>
     #login {
-        height: 100%;
+        min-height: 100%;
+        height: auto;
         background-color: #3598DC;
         padding-top: 35px;
     }

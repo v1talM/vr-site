@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <form   @submit.prevent="handleRegistUser()"
+            <form @submit.prevent="handleRegistUser()"
                     class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                 <div class="row">
                     <h1>
@@ -69,6 +69,7 @@
             </form>
         </div>
     </div>
+
 </template>
 <style>
 #signup form {
@@ -136,7 +137,11 @@
 </style>
 <script>
     import api from './../api'
+    import {mapState, mapActions} from 'vuex'
     export default{
+        computed: mapState({
+            $loadingRouteData: state => state.vrStore.loadingRouteData
+        }),
         data () {
             return {
                 name: '',
@@ -145,8 +150,19 @@
                 password_confirmation: '',
             }
         },
+
         methods: {
+            ...mapActions([
+                'setLoadingRouteData', 'unsetLoadingRouteData', 'setShowModal', 'setModalContent'
+            ]),
+            clearStatus () {
+                this.name = ''
+                this.email = '',
+                this.password = '',
+                this.password_confirmation = ''
+            },
             handleRegistUser () {
+                this.setLoadingRouteData()
                 const userObj = {
                     name: this.name,
                     email: this.email,
@@ -154,9 +170,22 @@
                     password_confirmation: this.password_confirmation
                 }
                 api.registUser(userObj).then( response => {
-                    console.log(response.body)
+                    this.unsetLoadingRouteData()
+                    const content = {
+                        header: 'Message!',
+                        body: [response.body.info]
+                    }
+                    this.setModalContent(content)
+                    this.setShowModal()
+                    this.clearStatus()
                 }).catch( error => {
-                    console.log(error.body)
+                    this.unsetLoadingRouteData()
+                    const content = {
+                        header: 'Oops!',
+                        body: error.body
+                    }
+                    this.setModalContent(content)
+                    this.setShowModal()
                 });
             }
         }

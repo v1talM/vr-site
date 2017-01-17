@@ -5,7 +5,7 @@ import Welcome from './pages/Welcome.vue'
 import LoginPage from './pages/LoginPage.vue'
 import SignupPage from './pages/SignupPage.vue'
 export default [
-    { path: '/', component: Welcome },
-    { path: '/login', component: LoginPage},
-    { path: '/signup', component: SignupPage}
+    { path: '/', component: Welcome, name: 'home'},
+    { path: '/login', component: LoginPage, name: 'login'},
+    { path: '/signup', component: SignupPage, name: 'signup'}
 ]

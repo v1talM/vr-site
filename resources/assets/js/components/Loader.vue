@@ -1,7 +1,18 @@
 <template>
-    <div class="loader"></div>
+    <div class="loader-bg">
+        <div class="loader"></div>
+    </div>
+
 </template>
 <style>
+.loader-bg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: rgba(0,0,0,.9);
+    z-index: 100;
+}
 .loader {
   position: relative;
   width: 2.5em;

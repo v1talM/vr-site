@@ -3,20 +3,35 @@
  */
 import api from '../api'
 const state = {
-    vrList: []
+    vrList: [],
+    loadingRouteData: false,
+    showModal: false
 }
 
 const mutations = {
     SET_VR_LIST (state, vr){
         state.vrList = vr
+    },
+    SET_LOADING_ROUTE_DATA(state){
+        state.loadingRouteData = true
+    },
+    UNSET_LOADING_ROUTE_DATA(state){
+        state.loadingRouteData = false
+    },
+    SET_SHOW_MODAL(state){
+        state.showModal = ! state.showModal
     }
 }
 
 const actions = {
-    getVrList ({commit}) {
-        api.getVrList().then( response => {
-            commit('SET_VR_LIST', response.data)
-        })
+    setLoadingRouteData({commit}) {
+        commit('SET_LOADING_ROUTE_DATA')
+    },
+    unsetLoadingRouteData({commit}) {
+        commit('UNSET_LOADING_ROUTE_DATA')
+    },
+    setShowModal({commit}) {
+        commit('SET_SHOW_MODAL')
     }
 }
 

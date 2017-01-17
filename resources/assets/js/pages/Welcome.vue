@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div v-show="!$loadingRouteData">
             <navbar></navbar>
             <jumbotron></jumbotron>
             <features></features>
@@ -8,12 +7,7 @@
             <introduce></introduce>
             <start></start>
             <copyright></copyright>
-
-        </div>
-        <loader v-show="$loadingRouteData"></loader>
     </div>
-
-
 </template>
 <style>
     @import './../../css/bootstrap.css'
@@ -30,6 +24,9 @@
     export default {
         components: {
             navbar, jumbotron, features, profile, introduce, start, copyright, loader
+        },
+        mounted () {
+            
         }
     }
 </script>

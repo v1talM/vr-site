@@ -3,6 +3,7 @@
  */
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+import {clientId, clientSecret} from './env'
 Vue.use(VueResource);
 
 Vue.http.interceptors.push((request, next) => {
@@ -19,8 +20,22 @@ export default {
     registUser ( userObj ) {
         return Vue.resource(API_ROOT + '/signup').save(userObj);
     },
-    //登录用户接口调用方法
-    loginUser ( userObj ) {
-        return Vue.resource(API_ROOT + '/login').save(userObj);
+    //获取access_token接口调用方法
+    getAccessToken ( userObj ) {
+        const postData = {
+            grant_type: 'password',
+            client_id: clientId,
+            client_secret: clientSecret,
+            username: userObj.email,
+            password: userObj.password,
+            scope: ''
+        };
+        return Vue.resource(API_ROOT + '/oauth/token').save(postData);
+    },
+    //获取用户个人信息接口调用方法
+    getUserData ( headers ) {
+        return Vue.http.get(API_ROOT + '/api/user', {
+            headers: headers
+        });
     }
 }
