@@ -9,8 +9,10 @@ const state = {
 const mutations = {
     SET_AUTH_USER ( state, userObj) {
         state.user = userObj
+    },
+    CLEAR_AUTH_USER( state ) {
+        state.user = null
     }
-
 }
 
 const actions = {
@@ -22,6 +24,9 @@ const actions = {
     },
     setAuthUser({commit}, userObj){
         commit('SET_AUTH_USER', userObj)
+    },
+    clearAuthUser({commit}){
+        commit('CLEAR_AUTH_USER')
     }
 }
 
