@@ -19,6 +19,7 @@
                                     placeholder="输入您的昵称"
                                     type="text"
                                     v-model="name"
+                                    required="required"
                             >
                         </div>
                     </div>
@@ -33,6 +34,7 @@
                                     placeholder="输入您的邮箱地址"
                                     type="email"
                                     v-model="email"
+                                    required="required"
                             >
                         </div>
                     </div>
@@ -46,6 +48,7 @@
                                     placeholder="输入您的登录密码"
                                     type="password"
                                     v-model="password"
+                                    required="required"
                             >
                         </div>
                     </div>
@@ -59,6 +62,7 @@
                                     placeholder="确认您的登录密码"
                                     type="password"
                                     v-model="password_confirmation"
+                                    required="required"
                             >
                         </div>
                     </div>

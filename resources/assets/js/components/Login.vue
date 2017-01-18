@@ -18,6 +18,7 @@
                                    placeholder="您的登录邮箱"
                                    type="email"
                                    v-model="email"
+                                   required="required"
                             >
                         </div>
                     </div>
@@ -31,6 +32,7 @@
                                     placeholder="您的登录密码"
                                     type="password"
                                     v-model="password"
+                                    required="required"
                             >
                         </div>
                     </div>
@@ -152,8 +154,22 @@
                             this.$router.push({ name: 'home' })
                         }).catch( error => {
                             this.unsetLoadingRouteData()
+                            const content = {
+                                header: 'Oops!',
+                                body: error.body
+                            }
+                            this.setModalContent(content)
+                            this.setShowModal()
                         })
                     }
+                }).catch( error => {
+                    this.unsetLoadingRouteData()
+                    const content = {
+                        header: '登录失败!',
+                        body: ['请检查用户名和密码是否正确']
+                    }
+                    this.setModalContent(content)
+                    this.setShowModal()
                 })
 
             }
