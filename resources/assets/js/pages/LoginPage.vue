@@ -17,7 +17,7 @@
 </style>
 <script>
     import navbar from './../components/navbar.vue'
-    import login from './../components/Login.vue'
+    import login from './../components/login/Login.vue'
     export default{
         components: {
             navbar, login
