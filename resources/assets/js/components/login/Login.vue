@@ -111,7 +111,7 @@
 </style>
 <script>
     import {mapState, mapActions} from 'vuex'
-    import {getHeader} from './../config'
+    import {getHeader} from './../../config'
     export default{
         computed: mapState({
            user: state => state.vrUser.user,

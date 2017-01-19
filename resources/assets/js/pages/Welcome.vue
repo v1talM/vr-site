@@ -14,11 +14,11 @@
 </style>
 <script>
     import navbar from './../components/navbar.vue'
-    import jumbotron from './../components/Jumbotron.vue'
-    import features from './../components/Features.vue'
-    import profile from './../components/Profile.vue'
-    import introduce from './../components/Introduce.vue'
-    import start from './../components/Start.vue'
+    import jumbotron from './../components/welcome/Jumbotron.vue'
+    import features from './../components/welcome/Features.vue'
+    import profile from './../components/welcome/Profile.vue'
+    import introduce from './../components/welcome/Introduce.vue'
+    import start from './../components/welcome/Start.vue'
     import copyright from './../components/Footer.vue'
     import loader from './../components/Loader.vue'
     export default {

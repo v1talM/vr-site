@@ -19,7 +19,7 @@
 </style>
 <script>
     import navbar from './../components/navbar.vue'
-    import signup from './../components/Signup.vue'
+    import signup from './../components/signup/Signup.vue'
     export default{
         components: {
             navbar, signup

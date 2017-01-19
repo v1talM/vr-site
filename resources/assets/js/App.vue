@@ -16,6 +16,7 @@
 </template>
 <style>
     html, body, #app, .wrapper{
+        min-height: 100%;
         height: 100%;
     }
 

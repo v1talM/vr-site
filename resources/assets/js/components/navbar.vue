@@ -13,7 +13,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a href="#">项目展示</a></li>
+                        <li><router-link to="/portfolio">项目展示</router-link></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" v-if="!vrUser.user || !vrUser.user.access_token">
                         <li><router-link to="/login" class="login-btn">登 录</router-link></li>
@@ -33,6 +33,9 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                    <router-link :to="{name: 'user', params: { id: vrUser.user.name }}"> <i class="fa fa-user-o"></i> 个人中心</router-link>
+                                </li>
+                                <li>
                                     <a href="#" @click.prevent="handleLogout()"> <i class="fa fa-window-close-o"></i>  退出登录 </a>
                                 </li>
 
@@ -51,13 +54,15 @@
         margin-bottom: 0;
         min-height: 50px;
         transition: all .5s;
+
     }
     .scrolled .navbar{
         border-radius: 0;
         padding: 15px 0;
         margin-bottom: 0;
         min-height: 50px;
-        background-color: #fff;
+        background-color: rgba(255,255,255, .97);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     }
     .navbar-brand{
         height: 42px;

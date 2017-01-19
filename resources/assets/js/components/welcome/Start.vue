@@ -9,7 +9,7 @@
     #start {
         background-color: #fff;
         padding: 100px 0 80px;
-        background-image: url('./../../imgs/start-bg.png');
+        background-image: url('./../../../imgs/start-bg.png');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;

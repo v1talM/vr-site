@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 import store from './store/'
 import App from './App.vue'
-import loader from './components/Loader.vue'
+import $ from 'jquery'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.component('app', App)
@@ -13,6 +13,10 @@ Vue.component('app', App)
 const router = new VueRouter({
     routes
 });
+router.beforeEach((to, from, next) => {
+    window.scrollTo( 0, 0 )
+    next()
+})
 const app = new Vue({
     router, store
 }).$mount('#app');

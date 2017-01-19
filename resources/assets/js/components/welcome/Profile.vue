@@ -21,7 +21,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city1.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -32,7 +32,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city2.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city2.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -43,7 +43,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city3.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city3.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -54,7 +54,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city1.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -67,7 +67,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city1.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -78,7 +78,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city2.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city2.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -89,7 +89,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city3.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city3.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -100,7 +100,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../imgs/city1.jpg" class="img img-responsive">
+                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
                                                 <h4>The magic city</h4>
@@ -158,7 +158,7 @@
         height: 100%;
         width: 100%;
         z-index: 0;
-        background-image: url('./../../imgs/profile-bg.jpg');
+        background-image: url('./../../../imgs/profile-bg.jpg');
         overflow: hidden;
         background-size: cover;
         background-position: center center;
@@ -168,12 +168,12 @@
         padding-left: 0;
         padding-right: 0;
     }
-    .panel.profile-panel {
+    #profile .panel.profile-panel {
         padding: 1rem 0;
         background-color: transparent;
         border: none;
     }
-    .profile-panel .panel-heading{
+    #profile .profile-panel .panel-heading{
         padding: 0;
         border: none;
         border-radius: 0;
@@ -181,25 +181,25 @@
         height: 100%;
         overflow:hidden;
     }
-    .profile-panel .panel-heading img {
+    #profile .profile-panel .panel-heading img {
         -webkit-filter: grayscale(50%); /* Chrome, Safari, Opera */
         filter: grayscale(50%);
         transition: all .4s ease;
     }
-    .profile-panel .panel-body {
+    #profile .profile-panel .panel-body {
         color: #eaeaea;
         background-color: rgba(0,0,0,.8);
         transition: all .3s linear;
     }
-    .profile-panel:hover .panel-body{
+    #profile .profile-panel:hover .panel-body{
         background-color: #18bc9c;
     }
-     .panel-heading:hover img {
+     #profile .panel-heading:hover img {
         -webkit-filter: grayscale(0%);
         filter: grayscale(0%);
         transform: scale(1.05);
     }
-    .profile-title{
+    #profile .profile-title{
         text-align: center;
         margin-top: 0;
         font-size: 28px;
@@ -209,7 +209,7 @@
         letter-spacing: 2px;
         color: #fff;
     }
-    .profile-sub {
+    #profile .profile-sub {
         margin: 0;
         font-size: 16px;
         color: #eaeaea;

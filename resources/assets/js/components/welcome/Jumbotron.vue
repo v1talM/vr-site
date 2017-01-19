@@ -15,7 +15,7 @@
                         <p>
                             Easy-to-use, powerful and awesome.
                         </p>
-                        <a href="#" class="more">
+                        <a href="#" class="btn more">
                             了解更多
                         </a>
                     </div>
@@ -31,7 +31,7 @@
         overflow: hidden;
         position: relative;
         padding: 100px 0;
-        padding-top: 160px;
+        padding-top: 130px;
     }
     .particle-bg:before {
         content: '';
@@ -50,7 +50,7 @@
         height: 100%;
         width: 100%;
         z-index: 0;
-        background-image: url('./../../imgs/background.jpg');
+        background-image: url('./../../../imgs/background.jpg');
         overflow: hidden;
         background-size: cover;
         background-position: center center;
@@ -83,18 +83,19 @@
     }
     a.more {
         text-decoration: none;
+        border-color: #fff;
         color: #fff;
-        width: 7em;
-        height: 2.5em;
-        border: 2px solid #fff;
-        padding: .725em 3.5em;
-        font-size: 1em;
-        border-radius: 0.225em;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 15.5px 45px;
+        border-radius: 0;
         transition: all .3s ease-in-out;
     }
     a.more:focus, a.more:hover {
-        padding: 1em 3.75em;
-        font-weight: 300;
+        padding: 15.5px 65px;
+        font-weight: bold;
+        background-color: #fff;
+        color: #004a3c;
     }
 </style>
 <script>
