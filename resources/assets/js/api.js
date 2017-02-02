@@ -33,5 +33,9 @@ export default {
         return Vue.http.get(API_ROOT + '/api/user', {
             headers: headers
         });
+    },
+    //用户上传作品接口调用方法
+    uploadProduct ( headers, product ) {
+        return Vue.http.post(API_ROOT + '/api/product', product, {headers: headers})
     }
 }

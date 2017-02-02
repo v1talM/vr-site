@@ -6,9 +6,10 @@ import Vuex from 'vuex'
 import vrStore from './vrStore'
 import vrUser from './vrUser'
 import vrModal from './vrModal'
+import vrUpload from './vrUpload'
 Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
-        vrStore, vrUser, vrModal
+        vrStore, vrUser, vrModal, vrUpload
     }
 })

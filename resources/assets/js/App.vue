@@ -15,11 +15,10 @@
 
 </template>
 <style>
-    html, body, #app, .wrapper{
+    html, body{
         min-height: 100%;
         height: 100%;
     }
-
     .load-enter-active, .load-leave-active {
       transition: opacity .5s, transform .5s;
     }

@@ -5,11 +5,22 @@ import Welcome from './pages/Welcome.vue'
 import LoginPage from './pages/LoginPage.vue'
 import SignupPage from './pages/SignupPage.vue'
 import PortfolioPage from './pages/PortfolioPage.vue'
+/**
+ * UserPage
+ */
 import UserPage from './pages/UserPage.vue'
+import UserCentry from './components/user/UserCentry.vue'
+import UserAddPro from './components/user/AddPro.vue'
 export default [
     { path: '/', component: Welcome, name: 'home'},
     { path: '/login', component: LoginPage, name: 'login'},
     { path: '/signup', component: SignupPage, name: 'signup'},
     { path: '/portfolio', component: PortfolioPage, name: 'portfolio'},
-    { path: '/user/:id', component: UserPage, name: 'user'}
+    { path: '/user/:id', component: UserPage,
+        children: [
+            { path: '', component: UserCentry, name: 'user'},
+            { path: 'create', component: UserAddPro, name: 'userCreate'}
+        ]
+    }
+
 ]

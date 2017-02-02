@@ -6,6 +6,7 @@ import routes from './routes'
 import store from './store/'
 import App from './App.vue'
 import $ from 'jquery'
+window.$ = $
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.component('app', App)
