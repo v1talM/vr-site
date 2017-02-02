@@ -1,16 +1,24 @@
 <template>
-    <div>
+    <div class="user-wrapper">
         <navbar></navbar>
+        <user-header></user-header>
+        <user-main></user-main>
+        <copyright></copyright>
     </div>
 </template>
 <style>
+    .user-wrapper{
 
+    }
 </style>
 <script>
-    import navbar from './../components/navbar.vue'
+    import Navbar from './../components/navbar.vue'
+    import UserHeader from './../components/user/Header.vue'
+    import UserMain from './../components/user/Main.vue'
+    import Copyright from './../components/Footer.vue'
     export default{
         components: {
-            navbar
+            Navbar, UserHeader, UserMain, Copyright
         }
     }
 </script>

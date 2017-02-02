@@ -19,7 +19,7 @@
         margin-bottom: 30px;
         position: relative;
     }
-    .jumb-content {
+    .portfolio-jumb .jumb-content {
         padding: 2em 60px;
         color: #fff;
         text-align: center;

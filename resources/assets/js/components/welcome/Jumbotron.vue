@@ -27,7 +27,7 @@
 </template>
 <style>
     .main-intro {
-        background: #5a32c6;
+        background: #2c3e50;
         overflow: hidden;
         position: relative;
         padding: 100px 0;
