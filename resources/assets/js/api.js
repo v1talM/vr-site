@@ -37,5 +37,11 @@ export default {
     //用户上传作品接口调用方法
     uploadProduct ( headers, product ) {
         return Vue.http.post(API_ROOT + '/api/product', product, {headers: headers})
+    },
+    getVRListFromServer (page) {
+        return Vue.resource(API_ROOT + '/api/product/get').get({page: page})
+    },
+    getVRListTotal () {
+        return Vue.resource(API_ROOT + '/api/product/total').get()
     }
 }

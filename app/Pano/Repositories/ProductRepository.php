@@ -16,4 +16,19 @@ class ProductRepository
         return Product::create($attribute);
     }
 
+    public function getAllProducts()
+    {
+        return Product::with('user')->get();
+    }
+
+    public function getProductsWithLimit($page = 1, $limit = 15)
+    {
+        $end = $page * $limit;
+        $start = $end - $limit;
+        return Product::skip($start)->take($limit)->with('user')->get();
+    }
+
+    public function getProductsTotal(){
+        return Product::count();
+    }
 }

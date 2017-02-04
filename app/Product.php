@@ -10,4 +10,8 @@ class Product extends Model
         'pro_title', 'pro_thumb', 'pro_thumb_base64', 'pro_photo', 'pro_photo_base64', 'user_id'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -3,3 +3,4 @@
  */
 export const clientId = 2
 export const clientSecret = '9kthbJhm3ZI08RRJz6a0f3FZEYAVZqrNZ4R9eTN6'
+export const display_per_page = 15

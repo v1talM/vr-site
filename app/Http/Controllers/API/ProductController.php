@@ -47,6 +47,11 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * @param $base64_img
+     * @param $name
+     * @return \Illuminate\Http\JsonResponse|string
+     */
     private function base64DecodeImage($base64_img, $name)
     {
         if( preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_img, $img) ){
@@ -67,5 +72,34 @@ class ProductController extends Controller
             }
         }
          return response()->json([ 'info' => '图片格式不正确' ], 422);
+    }
+
+    public function getAllProducts()
+    {
+        $products = $this->productRepository->getAllProducts();
+        return response()->json([
+            'info' => '获取数据成功!',
+            'data' => $products
+        ]);
+    }
+
+    public function getProductsWithLimit(Request $request)
+    {
+        $page = $request->input('page') ?: 1;
+        $limit = env('product_limit');
+        $products = $this->productRepository->getProductsWithLimit($page, $limit);
+        return response()->json([
+            'info' => '获取数据成功!',
+            'data' => $products
+        ]);
+    }
+
+    public function getProductsTotal()
+    {
+        $total = $this->productRepository->getProductsTotal();
+        return response()->json([
+            'info' => '获取数据成功!',
+            'data' => $total
+        ]);
     }
 }
