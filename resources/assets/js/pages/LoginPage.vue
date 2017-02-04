@@ -19,6 +19,10 @@
     import navbar from './../components/navbar.vue'
     import login from './../components/login/Login.vue'
     export default{
+        mounted () {
+            let app = document.getElementById('login')
+            app.style.height = window.innerHeight + 'px'
+        },
         components: {
             navbar, login
         }

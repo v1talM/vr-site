@@ -11,7 +11,7 @@
     height: 100%;
     top: 0;
     background-color: rgba(0,0,0,.9);
-    z-index: 100;
+    z-index: 1050;
 }
 .loader {
   position: relative;

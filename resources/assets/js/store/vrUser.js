@@ -12,6 +12,9 @@ const mutations = {
     },
     CLEAR_AUTH_USER( state ) {
         state.user = null
+    },
+    GET_USER_ID( state ) {
+        return state.user.id
     }
 }
 
@@ -27,6 +30,9 @@ const actions = {
     },
     clearAuthUser({commit}){
         commit('CLEAR_AUTH_USER')
+    },
+    getUserId({commit}){
+        commit('GET_USER_ID')
     }
 }
 

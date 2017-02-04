@@ -21,6 +21,10 @@
     import navbar from './../components/navbar.vue'
     import signup from './../components/signup/Signup.vue'
     export default{
+        mounted () {
+            let app = document.getElementById('signup')
+            app.style.height = window.innerHeight + 'px'
+        },
         components: {
             navbar, signup
         }
