@@ -11,19 +11,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="portfolio-card col-md-4">
+            <div v-for="vr in vrList" class="portfolio-card col-md-4">
                 <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
+                    <router-link :to="{name: 'user', params: { id: vr.user.name }}">
+                        <div class="img" v-bind:style="{backgroundImage:'url(' + vr.pro_thumb + ')'}"></div>
                         <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
+                            <h3> {{ vr.pro_title }} </h3>
                         </div>
-                    </a>
+                    </router-link>
                     <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
+                        <router-link
+                                :to="{name: 'user', params: { id: vr.user.name }}"
+                                class="pull-left profile-avatar small"
+                        >
                             <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
+                            <img class="media-object avatar" height="45" :src="vr.user.avatar" width="45">
+                        </router-link>
                         <div class="pull-right">
                             <div class="vr-count">
                                 <span>100</span>
@@ -31,231 +34,42 @@
                             </div>
                         </div>
                         <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
+                            <router-link :to="{name: 'user', params: { id: vr.user.name }}">{{ vr.user.name }}</router-link>
+                            <div class="location small">{{ vr.pro_title }}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card col-md-4">
-                <div class="thumbnail has-photo">
-                    <a href="#">
-                        <div class="img" style="background-image: url('./img/nx.jpg')"></div>
-                        <div class="caption">
-                            <h3>2017 Ian Vital Presents </h3>
-                        </div>
-                    </a>
-                    <div class="actions clearfix">
-                        <a href="#" class="pull-left profile-avatar small">
-                            <div class="initials">?</div>
-                            <img class="media-object avatar" height="45" src="./../../../imgs/city4.jpg" width="45">
-                        </a>
-                        <div class="pull-right">
-                            <div class="vr-count">
-                                <span>100</span>
-                                <span class="fa fa-heart-o"></span>
-                            </div>
-                        </div>
-                        <div class="user">
-                            <a href="#">Ian Vital</a>
-                            <div class="location small">San Francisco Bay Area</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
-        <div class="row pagination">
-            <ul>
-                <a href="#"><li>1</li></a>
-                <a href="#"><li>2</li></a>
-                <a class="is-active" href="#"><li>3</li></a>
-                <a href="#"><li>4</li></a>
-                <a href="#"><li>5</li></a>
-                <a href="#"><li>6</li></a>
+        <nav class="text-center">
+            <ul class="pagination">
+                <li :class="{ 'disabled': current == 1}">
+                    <a href="javascript:;"
+                       @click = "setCurrent(current - 1)"
+                       aria-label="Previous"
+                    >
+                        <span aria-hidden="true">上一页</span>
+                    </a>
+                </li>
+                <li :class="{ 'active': n  == current }"
+                    v-for="n in page"
+                    @click="setCurrent(n)"
+                >
+                    <a href="javascript:;">{{ n }} <span class="sr-only">(current)</span></a>
+                </li>
+                <li :class="{ 'disabled': current == page}">
+                    <a href="javascript:;"
+                       @click = "setCurrent(current + 1)"
+                       aria-label="Previous"
+                    >
+                        <span aria-hidden="true">下一页</span>
+                    </a>
+                </li>
+
             </ul>
-        </div>
+        </nav>
+
     </div>
 </template>
 <style>
@@ -408,7 +222,6 @@
     .pagination {
         padding: 30px 0;
         text-align: center;
-        display: block;
     }
     .pagination ul {
         margin: 0;
@@ -426,7 +239,68 @@
     }
 </style>
 <script>
+    import {mapActions, mapState} from 'vuex'
+    import {display_per_page} from './../../env'
     export default{
-
+        data () {
+            return {
+                current: 0,
+                total: 1,
+                display: display_per_page,
+            }
+        },
+        computed: mapState({
+            vrList: state => state.vrStore.vrList,
+            page () {
+                return Math.ceil(this.total / this.display)
+            }
+        }),
+        mounted () {
+            this.setLoadingRouteData()
+            this.getProductsTotal()
+            this.setCurrent(1)
+        },
+        methods: {
+            ...mapActions([
+                'getVRListFromServer',
+                'getVRListTotal',
+                'setLoadingRouteData',
+                'unsetLoadingRouteData',
+                'setVRList',
+                'setModalContent',
+                'setShowModal'
+            ]),
+            setCurrent (idx) {
+                if( this.current != idx && idx > 0 && idx < this.total + 1) {
+                    this.current = idx;
+                    this.getProductsByPage(idx);
+                }
+            },
+            getProductsByPage (idx) {
+                this.getVRListFromServer(idx).then( response => {
+                    this.setVRList(response.body.data)
+                    this.unsetLoadingRouteData()
+                }).catch( error => {
+                    const content = {
+                        header: 'Oops!',
+                        body: error.body
+                    }
+                    this.setModalContent(content)
+                    this.setShowModal()
+                })
+            },
+            getProductsTotal () {
+                this.getVRListTotal().then( response => {
+                    this.total = response.body.data
+                }).catch( error => {
+                    const content = {
+                        header: 'Oops!',
+                        body: error.body
+                    }
+                    this.setModalContent(content)
+                    this.setShowModal()
+                })
+            }
+        }
     }
 </script>

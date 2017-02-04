@@ -72,7 +72,10 @@
                 </div>
             </div>
             <div class="col-sm-9">
-                <router-view></router-view>
+                <transition name="slide">
+                    <router-view></router-view>
+                </transition>
+
             </div>
         </div>
     </div>
@@ -183,6 +186,62 @@
     }
     .btn-add-project {
         padding: 5px 10px;
+    }
+    .slide-enter-active {
+      animation: slideInRight .5s;
+    }
+    .slide-leave-active {
+      animation: slideOutLeft .5s;
+    }
+    @-webkit-keyframes slideInRight {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    @-webkit-keyframes slideOutLeft {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        visibility: hidden;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+      }
+    }
+
+    @keyframes slideOutLeft {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        visibility: hidden;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+      }
     }
 </style>
 <script>

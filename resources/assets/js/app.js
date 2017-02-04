@@ -15,7 +15,10 @@ const router = new VueRouter({
     routes
 });
 router.beforeEach((to, from, next) => {
-    window.scrollTo( 0, 0 )
+    if(!to.meta.subRoute){
+        window.scrollTo( 0, 0 )
+        next()
+    }
     next()
 })
 const app = new Vue({

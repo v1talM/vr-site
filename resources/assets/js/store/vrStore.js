@@ -20,7 +20,7 @@ const mutations = {
     },
     SET_SHOW_MODAL(state){
         state.showModal = ! state.showModal
-    }
+    },
 }
 
 const actions = {
@@ -32,6 +32,15 @@ const actions = {
     },
     setShowModal({commit}) {
         commit('SET_SHOW_MODAL')
+    },
+    setVRList({commit}, vr) {
+        commit('SET_VR_LIST', vr)
+    },
+    getVRListFromServer({}, page) {
+        return api.getVRListFromServer(page)
+    },
+    getVRListTotal({}) {
+        return api.getVRListTotal()
     }
 }
 
