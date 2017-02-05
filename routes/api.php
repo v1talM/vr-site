@@ -20,4 +20,5 @@ Route::group(['prefix' => 'product', 'middleware' => 'api'], function (){
     Route::post('/', 'API\ProductController@store')->middleware('auth:api');
     Route::get('/get', 'API\ProductController@getProductsWithLimit');
     Route::get('/total', 'API\ProductController@getProductsTotal');
+    Route::get('/{id}', 'API\ProductController@getProductById')->where('id','[0-9]+');
 });

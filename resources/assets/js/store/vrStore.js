@@ -20,7 +20,7 @@ const mutations = {
     },
     SET_SHOW_MODAL(state){
         state.showModal = ! state.showModal
-    },
+    }
 }
 
 const actions = {
@@ -41,6 +41,9 @@ const actions = {
     },
     getVRListTotal({}) {
         return api.getVRListTotal()
+    },
+    getVRById({}, id) {
+        return api.getVRById(id)
     }
 }
 

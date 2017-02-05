@@ -43,5 +43,8 @@ export default {
     },
     getVRListTotal () {
         return Vue.resource(API_ROOT + '/api/product/total').get()
+    },
+    getVRById (id) {
+        return Vue.resource(API_ROOT + '/api/product/' + id).get()
     }
 }
