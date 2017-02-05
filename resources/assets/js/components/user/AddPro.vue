@@ -45,7 +45,18 @@
                             </div>
                             <div class="col-lg-4 help-block">请上传您的全景作品图片。</div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label ">背景音乐</label>
+                            <div class="col-lg-6">
+                                <input
+                                        @change="onFileChange"
+                                        type="file"
+                                        class="form-control input-sm"
+                                        name="bgm"
+                                >
+                            </div>
+                            <div class="col-lg-4 help-block">可选。</div>
+                        </div>
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-6">
                                 <button class="btn btn-primary btn-sm">上传作品</button>
@@ -74,14 +85,14 @@
     import {getHeader} from './../../config'
     export default{
         computed: mapState({
-          user: state => state.vrUser.user,
-          $loadingRouteData: state => state.vrStore.loadingRouteData
+          user: state => state.vrUser.user
         }),
         data () {
             return {
                 pro_title: '',
                 thumb: '',
-                photo: ''
+                photo: '',
+                bgm: ''
             }
         },
         methods: {
@@ -97,10 +108,12 @@
                 this.setLoadingRouteData()
                 const thumb = this.thumb
                 const photo = this.photo
+                const bgm = this.bgm
                 const product = {
                     pro_title: this.pro_title,
                     pro_thumb: thumb,
                     pro_photo: photo,
+                    pro_bgm: bgm,
                     user_id: this.user.id
                 }
                 if(thumb === '' || photo === '' ) return ;
@@ -129,8 +142,12 @@
                 if (!file.length) return;
                 if( e.target.name == 'thumb' ){
                     this.createThumbImage(file);
-                }else{
+                }
+                if( e.target.name == 'photo'){
                     this.createPhotoImage(file);
+                }
+                if( e.target.name == 'bgm'){
+                    this.createBackgroundMusic(file)
                 }
             },
             createThumbImage (file) {
@@ -158,6 +175,18 @@
                 reader.onload = function(e){
                     vm.photo = e.target.result;
                 };
+            },
+            createBackgroundMusic (file) {
+                if(typeof FileReader === 'undefined' ) {
+                    alert('您的浏览器不支持音乐上传，请升级您的浏览器');
+                    return false;
+                }
+                var vm = this;
+                var reader = new FileReader();
+                reader.readAsDataURL(file[0]);
+                reader.onload = function(e) {
+                    vm.bgm = e.target.result;
+                }
             },
             clearStatus () {
                 document.getElementById("addProForm").reset();

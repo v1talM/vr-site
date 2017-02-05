@@ -21,7 +21,10 @@
     export default{
         mounted () {
             let app = document.getElementById('login')
-            app.style.height = window.innerHeight + 'px'
+            let o_width = window.innerWidth
+            if(o_width >= 768) {
+                app.style.height = window.innerHeight + 'px'
+            }
         },
         components: {
             navbar, login

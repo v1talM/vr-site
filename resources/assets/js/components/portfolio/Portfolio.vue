@@ -13,7 +13,7 @@
         <div class="row">
             <div v-for="vr in vrList" class="portfolio-card col-md-4">
                 <div class="thumbnail has-photo">
-                    <router-link :to="{name: 'user', params: { id: vr.user.name }}">
+                    <router-link :to="{name: 'vr', params: { id: vr.id }}">
                         <div class="img" v-bind:style="{backgroundImage:'url(' + vr.pro_thumb + ')'}"></div>
                         <div class="caption">
                             <h3> {{ vr.pro_title }} </h3>

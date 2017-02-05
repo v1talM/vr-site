@@ -35,8 +35,13 @@ class ProductController extends Controller
         $pro_photo_base64 = $request->input('pro_photo');
         //作品转换后路径
         $pro_photo = $this->base64DecodeImage($pro_photo_base64, 'photo');
+        //背景音乐base64格式编码
+        $pro_bgm_base64 = $request->input('pro_bgm');
+        //背景音乐转换后路径
+        $pro_bgm = $this->base64DecodeAudio($pro_bgm_base64, 'bgm');
         $attributes = [
             'pro_title' => $request->input('pro_title'),
+            'pro_bgm' => $pro_bgm,
             'pro_thumb' => $pro_thumb,
             'pro_photo' => $pro_photo,
             'user_id' => $request->input('user_id')
@@ -56,7 +61,7 @@ class ProductController extends Controller
     {
         if( preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_img, $img) ){
             $type = $img[2];
-            $upload_directory = 'uploads/'. date('Ymd',time()) . "/";
+            $upload_directory = 'uploads/img/'. date('Ymd',time()) . "/";
             if(!file_exists($upload_directory))
             {
                 mkdir($upload_directory, 0700);
@@ -72,6 +77,26 @@ class ProductController extends Controller
             }
         }
          return response()->json([ 'info' => '图片格式不正确' ], 422);
+    }
+
+    private function base64DecodeAudio($base64_audio, $name)
+    {
+        if( preg_match('/^(data:\s*audio\/(\w+);base64,)/', $base64_audio, $audio) ){
+            $type = $audio[2];
+            $upload_directory = 'uploads/audio/' . date('Ymd',time()) . "/";
+            if(!file_exists($upload_directory))
+            {
+                mkdir($upload_directory, 0700);
+            }
+            $new_file = $upload_directory . "{$name}_" . time() . ".{$type}";
+            if(file_put_contents($new_file, base64_decode(str_replace($audio[1], '', $base64_audio)))){
+                return $new_file;
+            }else{
+                return response()->json([
+                    'info' => '背景音乐保存失败'
+                ], 422);
+            }
+        }
     }
 
     public function getAllProducts()
@@ -100,6 +125,15 @@ class ProductController extends Controller
         return response()->json([
             'info' => '获取数据成功!',
             'data' => $total
+        ]);
+    }
+
+    public function getProductById($id)
+    {
+        $product = $this->productRepository->getProductById($id);
+        return response()->json([
+            'info' => '获取数据成功!',
+            'data' => $product
         ]);
     }
 }

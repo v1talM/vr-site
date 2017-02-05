@@ -11,6 +11,7 @@ import PortfolioPage from './pages/PortfolioPage.vue'
 import UserPage from './pages/UserPage.vue'
 import UserCentry from './components/user/UserCentry.vue'
 import UserAddPro from './components/user/AddPro.vue'
+import VRPage from './pages/VRPage.vue'
 export default [
     { path: '/', component: Welcome, name: 'home'},
     { path: '/login', component: LoginPage, name: 'login'},
@@ -21,6 +22,6 @@ export default [
             { path: '', component: UserCentry, name: 'user'},
             { path: 'create', component: UserAddPro, name: 'userCreate'}
         ]
-    }
-
+    },
+    { path: '/vr-pano/:id', component: VRPage, name: 'vr'}
 ]

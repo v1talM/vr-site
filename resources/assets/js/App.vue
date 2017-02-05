@@ -19,6 +19,9 @@
         min-height: 100%;
         height: 100%;
     }
+    #app, .wrapper{
+        height: inherit;
+    }
     .load-enter-active, .load-leave-active {
       transition: opacity .5s, transform .5s;
     }
