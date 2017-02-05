@@ -94,7 +94,25 @@
                     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
                     document.addEventListener( 'mouseup', onDocumentMouseUp, false );
                     document.addEventListener( 'wheel', onDocumentMouseWheel, false );
+                    document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				    document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
+				    function onDocumentTouchStart( event ) {
+                        if ( event.touches.length == 1 ) {
+                            event.preventDefault();
+                            onPointerDownPointerX = event.touches[ 0 ].pageX;
+                            onPointerDownPointerY = event.touches[ 0 ].pageY;
+                            onPointerDownLon = lon;
+                            onPointerDownLat = lat;
+                        }
+                    }
+                    function onDocumentTouchMove( event ) {
+                        if ( event.touches.length == 1 ) {
+                            event.preventDefault();
+                            lon = ( onPointerDownPointerX - event.touches[0].pageX ) * 0.1 + onPointerDownLon;
+                            lat = ( event.touches[0].pageY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
+                        }
+                    }
                     document.addEventListener( 'dragover', function ( event ) {
                         event.preventDefault();
                         event.dataTransfer.dropEffect = 'copy';
