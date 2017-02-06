@@ -2,9 +2,8 @@
     <div style="height: inherit">
         <navbar></navbar>
         <pano></pano>
+        <control></control>
     </div>
-
-
 </template>
 <style>
 
@@ -12,14 +11,10 @@
 <script>
     import Pano from './../components/vr/Pano.vue'
     import navbar from './../components/navbar.vue'
+    import Control from './../components/vr/Control.vue'
     export default{
-        data(){
-            return{
-
-            }
-        },
         components:{
-            navbar, Pano
+            navbar, Pano, Control
         }
     }
 </script>

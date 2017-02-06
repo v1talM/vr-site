@@ -5,12 +5,16 @@ import api from '../api'
 const state = {
     vrList: [],
     loadingRouteData: false,
-    showModal: false
+    showModal: false,
+    vrInfo: null
 }
 
 const mutations = {
     SET_VR_LIST (state, vr){
         state.vrList = vr
+    },
+    SET_VR_INFO (state, vr){
+        state.vrInfo = vr
     },
     SET_LOADING_ROUTE_DATA(state){
         state.loadingRouteData = true
@@ -35,6 +39,9 @@ const actions = {
     },
     setVRList({commit}, vr) {
         commit('SET_VR_LIST', vr)
+    },
+    setVRInfo({commit}, vr) {
+        commit('SET_VR_INFO', vr)
     },
     getVRListFromServer({}, page) {
         return api.getVRListFromServer(page)
