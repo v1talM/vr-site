@@ -36,6 +36,7 @@
             this.setLoadingRouteData()
             this.getVRById(this.vr_id).then( response => {
                 this.vr = response.body.data
+                this.setVRInfo(response.body.data)
                 this.initVR()
                 var audio = document.getElementById('vr_bgm')
                 audio.play()
@@ -55,7 +56,8 @@
                 'setLoadingRouteData',
                 'unsetLoadingRouteData',
                 'setModalContent',
-                'setShowModal'
+                'setShowModal',
+                'setVRInfo'
             ]),
             initVR () {
                 var camera, scene, renderer;
@@ -145,7 +147,6 @@
                 }
 
                 function onDocumentMouseDown( event ) {
-                    event.preventDefault();
                     isUserInteracting = true;
                     onPointerDownPointerX = event.clientX;
                     onPointerDownPointerY = event.clientY;
