@@ -32,7 +32,7 @@
                 canvas: null
             }
         },
-        mounted () {
+        created () {
             this.setLoadingRouteData()
             this.getVRById(this.vr_id).then( response => {
                 this.vr = response.body.data
