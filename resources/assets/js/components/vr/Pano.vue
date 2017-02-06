@@ -99,7 +99,6 @@
 
 				    function onDocumentTouchStart( event ) {
                         if ( event.touches.length == 1 ) {
-                            event.preventDefault();
                             onPointerDownPointerX = event.touches[ 0 ].pageX;
                             onPointerDownPointerY = event.touches[ 0 ].pageY;
                             onPointerDownLon = lon;
