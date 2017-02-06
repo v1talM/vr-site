@@ -79,8 +79,13 @@
                     scene = new THREE.Scene();
                     var geometry = new THREE.SphereGeometry( 500, 60, 40 );
                     geometry.scale( - 1, 1, 1 );
+                    var vr_photo = new Image()
+                    vr_photo.onload = function () {
+                        alert(1)
+                    }
+                    vr_photo.src = vm.vr.pro_photo
                     var material = new THREE.MeshBasicMaterial( {
-                        map: new THREE.TextureLoader().load( vm.vr.pro_photo )
+                        map: new THREE.TextureLoader().load( vr_photo.src )
                     } );
                     mesh = new THREE.Mesh( geometry, material );
 				    scene.add( mesh );
