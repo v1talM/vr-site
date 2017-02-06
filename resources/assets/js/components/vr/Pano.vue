@@ -111,7 +111,6 @@
                     }
                     function onDocumentTouchMove( event ) {
                         if ( event.touches.length == 1 ) {
-                            event.preventDefault();
                             lon = ( onPointerDownPointerX - event.touches[0].pageX ) * 0.1 + onPointerDownLon;
                             lat = ( event.touches[0].pageY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
                         }
