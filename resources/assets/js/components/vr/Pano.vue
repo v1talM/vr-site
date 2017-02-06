@@ -37,7 +37,6 @@
             this.getVRById(this.vr_id).then( response => {
                 this.vr = response.body.data
                 this.initVR()
-                this.unsetLoadingRouteData()
                 var audio = document.getElementById('vr_bgm')
                 audio.play()
             }).catch( error => {
@@ -81,7 +80,7 @@
                     geometry.scale( - 1, 1, 1 );
                     var vr_photo = new Image()
                     vr_photo.onload = function () {
-                        alert(1)
+                        vm.unsetLoadingRouteData()
                     }
                     vr_photo.src = vm.vr.pro_photo
                     var material = new THREE.MeshBasicMaterial( {
