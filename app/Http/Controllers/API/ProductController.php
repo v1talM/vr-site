@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+    /**
+     * @var ProductRepository
+     */
     protected $productRepository;
 
     /**
@@ -22,7 +25,7 @@ class ProductController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 将用户上传的作品保存到数据库
      * @return \Illuminate\Http\Response
      */
     public function store(AddProRequest $request)
@@ -53,6 +56,7 @@ class ProductController extends Controller
     }
 
     /**
+     * 将base64格式的图片内容解码并保存
      * @param $base64_img
      * @param $name
      * @return \Illuminate\Http\JsonResponse|string
@@ -79,6 +83,12 @@ class ProductController extends Controller
          return response()->json([ 'info' => '图片格式不正确' ], 422);
     }
 
+    /**
+     * 将Base64格式的音频文件解码并保存
+     * @param $base64_audio
+     * @param $name
+     * @return \Illuminate\Http\JsonResponse|string
+     */
     private function base64DecodeAudio($base64_audio, $name)
     {
         if( preg_match('/^(data:\s*audio\/(\w+);base64,)/', $base64_audio, $audio) ){
@@ -99,6 +109,10 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * 获取所有的vr作品
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllProducts()
     {
         $products = $this->productRepository->getAllProducts();
@@ -108,6 +122,11 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * 根据数量限制获取vr作品
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getProductsWithLimit(Request $request)
     {
         $page = $request->input('page') ?: 1;
@@ -119,6 +138,10 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * 获取vr作品总计数量
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getProductsTotal()
     {
         $total = $this->productRepository->getProductsTotal();
@@ -128,6 +151,11 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * 根据id获取vr作品
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getProductById($id)
     {
         $product = $this->productRepository->getProductById($id);
