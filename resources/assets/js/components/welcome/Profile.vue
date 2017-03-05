@@ -11,110 +11,30 @@
                     <div id="profile-example" class="carousel slide " data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                            <li data-target="#profile-example" data-slide-to="0" class="active"></li>
-                            <li data-target="#profile-example" data-slide-to="1"></li>
-
+                            <li data-target="#profile-example"
+                                v-bind:data-slide-to="index - 1"
+                                v-bind:class="[index == 1 ? 'active' : '']"
+                                v-for="(index, item) in carouselItem"
+                            ></li>
                         </ol>
                         <div class="container">
                             <div class="carousel-inner " role="listbox">
-                                <div class="item active">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="item" v-bind:class="[index == 1?'active':'']" v-for="(index, item) in carouselItem">
+                                    <div class="col-md-3 col-sm-12 col-xs-12" v-for="vr in itemVRList(index)">
                                         <div class="panel profile-panel">
                                             <div class="panel-heading">
-                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
+                                                <img v-bind:src="vr.pro_thumb" class="img img-responsive">
                                             </div>
                                             <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="panel profile-panel">
-                                            <div class="panel-heading">
-                                                <img src="./../../../imgs/city2.jpg" class="img img-responsive">
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="panel profile-panel">
-                                            <div class="panel-heading">
-                                                <img src="./../../../imgs/city3.jpg" class="img img-responsive">
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="panel profile-panel">
-                                            <div class="panel-heading">
-                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
+                                                <h4>{{ vr.pro_title }}</h4>
+                                                <p>{{ vr.user.name }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="panel profile-panel">
-                                            <div class="panel-heading">
-                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="panel profile-panel">
-                                            <div class="panel-heading">
-                                                <img src="./../../../imgs/city2.jpg" class="img img-responsive">
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="panel profile-panel">
-                                            <div class="panel-heading">
-                                                <img src="./../../../imgs/city3.jpg" class="img img-responsive">
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="panel profile-panel">
-                                            <div class="panel-heading">
-                                                <img src="./../../../imgs/city1.jpg" class="img img-responsive">
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <h4>The magic city</h4>
-                                                <p>Ian Vital</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                         <!-- Wrapper for slides -->
-
-
                         <!-- Controls -->
                         <a class="left carousel-control" href="#profile-example" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -230,19 +150,41 @@
         border-radius: 0;
         border: 0;
         background-color: #fff;
-        margin: 0;
+        margin: 0 2px;
     }
     .carousel-indicators .active{
         background-color: #18bc9c;
         width: 25px;
         height: 2px;
+        margin: 0 2px;
     }
     .carousel-control.left, .carousel-control.right {
         background-image: none;
     }
 </style>
 <script>
+    import api from './../../api'
+    import {featuredPerPage} from './../../env'
     export default{
-
+        data () {
+            return {
+                featuredVR: []
+            }
+        },
+        computed: {
+            carouselItem () {
+                return this.featuredVR.length / featuredPerPage
+            }
+        },
+        created () {
+            api.getFeaturedVRList().then( response => {
+               this.featuredVR = response.data
+            })
+        },
+        methods: {
+            itemVRList (index) {
+                return this.featuredVR.slice((index - 1) * featuredPerPage, index * featuredPerPage)
+            }
+        }
     }
 </script>

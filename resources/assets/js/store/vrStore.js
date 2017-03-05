@@ -51,6 +51,9 @@ const actions = {
     },
     getVRById({}, id) {
         return api.getVRById(id)
+    },
+    getPanoById({}, id) {
+        return api.getPanoById(id)
     }
 }
 

@@ -6,14 +6,15 @@
                     <div class="user-info-panel">
                         <div class="media">
                             <a class="media-left" href="#">
-                                <img class="img avatar img-108" src="./../../../imgs/city3.jpg" alt="...">
+                                <img class="img avatar img-108"
+                                     :src="userInfo.avatar"
+                                     v-bind:alt="userInfo.name">
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading user-name">Ian Vital</h4>
+                                <h4 class="media-heading user-name">{{ userInfo.name }}</h4>
                                 <div class="media-content user-info-item">
-                                    <span class="item">第 1 位会员</span>
-                                    <span class="item">注册于 <i class="text-gray">3天前</i></span>
-                                    <span class="item">活跃于 <i class="text-gray">今天</i></span>
+                                    <span class="item">第 {{ userInfo.id }} 位会员</span>
+                                    <span class="item">注册于 <i class="text-gray">{{ userInfo.created_at }}</i></span>
                                 </div>
                             </div>
                             <hr>
@@ -27,7 +28,7 @@
                                     <a>关注了</a>
                                 </div>
                                 <div class="col-xs-4">
-                                    <a class="profile-count"> 10 </a>
+                                    <a class="profile-count"> {{ userInfo.products_count }}</a>
                                     <a>作品数</a>
                                 </div>
                             </div>
@@ -43,10 +44,16 @@
                                     <a class="detail-btn"><i class="fa fa-qq"></i> QQ</a>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="user-edit row">
-                                <div class="col-xs-12">
+                            <div class="user-edit row" v-if="vrUser.user && vrUser.user.id === userInfo.id">
+                                <hr>
+                                <div class="col-xs-12" >
                                     <a class="btn btn-block edit-btn"><i class="fa fa-edit"></i> 编辑个人资料</a>
+                                </div>
+                            </div>
+                            <div class="user-edit row" v-if="vrUser.user && vrUser.user.id !== userInfo.id">
+                                <hr>
+                                <div class="col-xs-12">
+                                    <a class="btn btn-block edit-btn"><i class="fa fa-smile-o"></i> 添加关注</a>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +82,6 @@
                 <transition name="slide">
                     <router-view></router-view>
                 </transition>
-
             </div>
         </div>
     </div>
@@ -245,8 +251,11 @@
     }
 </style>
 <script>
-
+    import {mapState, mapActions} from 'vuex'
     export default{
-
+        computed: mapState({
+            userInfo: state => state.vrUser.userInfo,
+            vrUser: state => state.vrUser
+        })
     }
 </script>

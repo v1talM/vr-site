@@ -1,8 +1,9 @@
 <template>
-    <div id="pano">
-        <audio autoplay id="vr_bgm" :src="vr.pro_bgm">
-        </audio>
-    </div>
+    <!--<div id="pano">-->
+        <!--<audio autoplay id="vr_bgm" :src="vr.pro_bgm">-->
+        <!--</audio>-->
+    <!--</div>-->
+    <canvas id="canvas"></canvas>
 </template>
 <style>
     #pano {
@@ -29,13 +30,15 @@
             return{
                 vr_id: this.$route.params.id,
                 vr: [],
-                canvas: null
+                pano: null,
+                url: ''
             }
         },
         created () {
             this.setLoadingRouteData()
             this.getVRById(this.vr_id).then( response => {
                 this.vr = response.body.data
+                this.pano = JSON.parse(this.vr.pro_photo)
                 this.setVRInfo(response.body.data)
                 this.initVR()
                 var audio = document.getElementById('vr_bgm')
@@ -49,10 +52,10 @@
                 this.setShowModal()
             })
         },
-
         methods: {
             ...mapActions([
                 'getVRById',
+                'getPanoById',
                 'setLoadingRouteData',
                 'unsetLoadingRouteData',
                 'setModalContent',

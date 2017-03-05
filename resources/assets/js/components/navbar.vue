@@ -33,7 +33,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <router-link :to="{name: 'user', params: { id: vrUser.user.name }}"> <i class="fa fa-user-o"></i> 个人中心</router-link>
+                                    <router-link :to="{name: 'user', params: { id: vrUser.user.id }}"> <i class="fa fa-user-o"></i> 个人中心</router-link>
                                 </li>
                                 <li>
                                     <a href="#" @click.prevent="handleLogout()"> <i class="fa fa-window-close-o"></i>  退出登录 </a>

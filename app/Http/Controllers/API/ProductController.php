@@ -25,47 +25,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     * 将用户上传的作品保存到数据库
-     * @return \Illuminate\Http\Response
-     */
-    public function store(AddProRequest $request)
-    {
-        //作品缩略图base64格式编码
-        $pro_thumb_base64 = $request->input('pro_thumb');
-        //作品缩略图转换后路径
-        $pro_thumb = $this->createThumbImage($pro_thumb_base64);
-        //作品base64格式编码
-        $pro_photo_base64 = $request->input('pro_photo');
-        //作品转换后路径
-        $pro_photo = $this->createProductionImage($pro_photo_base64);
-        //背景音乐base64格式编码
-        $pro_bgm_base64 = $request->input('pro_bgm');
-        //背景音乐转换后路径
-        if($pro_bgm_base64){
-            $pro_bgm = $this->base64DecodeAudio($pro_bgm_base64, 'bgm');
-        }else{
-            $pro_bgm = '';
-        }
-        if((!$pro_thumb) || (!$pro_photo)){
-            return response()->json([
-                'info' => '图片上传失败，请检查图片格式是否正确'
-            ], 422);
-        }
-        $attributes = [
-            'pro_title' => $request->input('pro_title'),
-            'pro_bgm' => $pro_bgm,
-            'pro_thumb' => $pro_thumb,
-            'pro_photo' => $pro_photo,
-            'user_id' => $request->input('user_id')
-        ];
-        $this->productRepository->create($attributes);
-        return response()->json([
-            'info' => '作品上传成功!'
-        ]);
-    }
-
-    /**
      * 根据base64格式创建缩略图
      * @param $base64_img
      * @return \Illuminate\Http\JsonResponse|string
@@ -112,14 +71,15 @@ class ProductController extends Controller
             }
             //获取图片信息
             $img = $this->getImageInfo(base64_decode(str_replace($img[1], '', $base64_img)));
-            $img->resize(2048, null, function ($constraint){
+            $img_width = intval( $img->getWidth() / 1000 );
+            $img->resize($img_width * 1024, null, function ($constraint){
                 $constraint->aspectRatio();
             });
             //生成图片名称及路径
             $new_file = $upload_directory . "photo_" . time();
             $cropImageURL = $this->cropImage($img, $new_file);
-            $originImageURL = $img->save($new_file . ".{$type}");
-            if($originImageURL){
+            $originImageURL = $img->save($new_file . "_original.{$type}");
+            if($cropImageURL){
                 return json_encode($cropImageURL);
             }
             return response()->json([ 'info' => '图片上传失败' ], 422);
@@ -146,17 +106,21 @@ class ProductController extends Controller
     {
         $width = $image->width();
         $height = $image->height();
+        $part = env('PHOTO_CROP_PART');
         $divide = env('PHOTO_CROP_UNIT');
         $crop_width = $width / $divide;
+        $count = 0;
         $cropImageURL = [];
-        while($divide--)
-        {
-            $image->backup();
-            $crop_img = $image->crop($crop_width, $height, $crop_width * $divide, 0);
-            $url = $path . "_{$divide}" . '.jpeg';
-            $crop_img->save($url);
-            $cropImageURL[] = $url;
-            $image->reset();
+        for($i = 0; $i < $part; $i++){
+            for($j = 0; $j < $divide; $j++){
+                $image->backup();
+                $crop_img = $image->crop($crop_width, $height / $part, $crop_width * $j, $i * ($height / $part));
+                $url = $path . "_{$count}" . '.jpeg';
+                $crop_img->save($url);
+                $cropImageURL[] = $url;
+                $image->reset();
+                $count++;
+            }
         }
         return $cropImageURL;
     }
@@ -185,6 +149,47 @@ class ProductController extends Controller
                 ], 422);
             }
         }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * 将用户上传的作品保存到数据库
+     * @return \Illuminate\Http\Response
+     */
+    public function store(AddProRequest $request)
+    {
+        //作品缩略图base64格式编码
+        $pro_thumb_base64 = $request->input('pro_thumb');
+        //作品缩略图转换后路径
+        $pro_thumb = $this->createThumbImage($pro_thumb_base64);
+        //作品base64格式编码
+        $pro_photo_base64 = $request->input('pro_photo');
+        //作品转换后路径
+        $pro_photo = $this->createProductionImage($pro_photo_base64);
+        //背景音乐base64格式编码
+        $pro_bgm_base64 = $request->input('pro_bgm');
+        //背景音乐转换后路径
+        if($pro_bgm_base64){
+            $pro_bgm = $this->base64DecodeAudio($pro_bgm_base64, 'bgm');
+        }else{
+            $pro_bgm = '';
+        }
+        if((!$pro_thumb) || (!$pro_photo)){
+            return response()->json([
+                'info' => '图片上传失败，请检查图片格式是否正确'
+            ], 422);
+        }
+        $attributes = [
+            'pro_title' => $request->input('pro_title'),
+            'pro_bgm' => $pro_bgm,
+            'pro_thumb' => $pro_thumb,
+            'pro_photo' => $pro_photo,
+            'user_id' => $request->input('user_id')
+        ];
+        $this->productRepository->create($attributes);
+        return response()->json([
+            'info' => '作品上传成功!'
+        ]);
     }
 
     /**
@@ -242,4 +247,15 @@ class ProductController extends Controller
             'data' => $product
         ]);
     }
+
+    /**
+     * 获取首页精品vr作品列表
+     * @return mixed
+     */
+    public function getFeatured()
+    {
+        $feature_limit = config('production.featured.limit');
+        return $this->productRepository->getFeaturedWithLimit($feature_limit);
+    }
+
 }
