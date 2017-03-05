@@ -98,8 +98,7 @@ class SpiderController extends Controller
                 $img->save($new_file, 90);
                 $img->destroy();
             }catch(ImageException $e){
-		dd('1');
-                return null;
+		return null;
             }
 
             return $new_file;
