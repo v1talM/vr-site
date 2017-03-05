@@ -22,6 +22,9 @@
     #app, .wrapper{
         height: inherit;
     }
+    canvas{
+	cursor: all-scroll;	
+    }
     .load-enter-active, .load-leave-active {
       transition: opacity .5s, transform .5s;
     }

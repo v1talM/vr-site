@@ -6,6 +6,7 @@ use App\Http\Requests\AddProRequest;
 use App\Pano\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -33,15 +34,24 @@ class ProductController extends Controller
         //作品缩略图base64格式编码
         $pro_thumb_base64 = $request->input('pro_thumb');
         //作品缩略图转换后路径
-        $pro_thumb = $this->base64DecodeImage($pro_thumb_base64, 'thumb');
+        $pro_thumb = $this->createThumbImage($pro_thumb_base64);
         //作品base64格式编码
         $pro_photo_base64 = $request->input('pro_photo');
         //作品转换后路径
-        $pro_photo = $this->base64DecodeImage($pro_photo_base64, 'photo');
+        $pro_photo = $this->createProductionImage($pro_photo_base64);
         //背景音乐base64格式编码
         $pro_bgm_base64 = $request->input('pro_bgm');
         //背景音乐转换后路径
-        $pro_bgm = $this->base64DecodeAudio($pro_bgm_base64, 'bgm');
+        if($pro_bgm_base64){
+            $pro_bgm = $this->base64DecodeAudio($pro_bgm_base64, 'bgm');
+        }else{
+            $pro_bgm = '';
+        }
+        if((!$pro_thumb) || (!$pro_photo)){
+            return response()->json([
+                'info' => '图片上传失败，请检查图片格式是否正确'
+            ], 422);
+        }
         $attributes = [
             'pro_title' => $request->input('pro_title'),
             'pro_bgm' => $pro_bgm,
@@ -56,31 +66,99 @@ class ProductController extends Controller
     }
 
     /**
-     * 将base64格式的图片内容解码并保存
+     * 根据base64格式创建缩略图
      * @param $base64_img
-     * @param $name
      * @return \Illuminate\Http\JsonResponse|string
      */
-    private function base64DecodeImage($base64_img, $name)
+    private function createThumbImage($base64_img)
     {
-        if( preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_img, $img) ){
+        if( preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_img, $img) ) {
+            //图片保存路径
             $type = $img[2];
             $upload_directory = 'uploads/img/'. date('Ymd',time()) . "/";
             if(!file_exists($upload_directory))
             {
                 mkdir($upload_directory, 0700);
             }
-            $new_file = $upload_directory . "{$name}_" . time() . ".{$type}";
-
-            if(file_put_contents($new_file, base64_decode(str_replace($img[1], '', $base64_img)))){
-                return $new_file;
-            }else{
-                return response()->json([
-                    'info' => '图片保存失败'
-                ], 422);
+            //获取图片信息
+            $img = $this->getImageInfo(base64_decode(str_replace($img[1], '', $base64_img)));
+            $img_width = $img->width();
+            if( $img_width > 600 ){
+                $img->widen(600);
             }
+            //生成图片名称及路径
+            $new_file = $upload_directory . "thumb_" . time() . ".{$type}";
+            if($img->save($new_file)){
+                return $new_file;
+            }
+            return response()->json([ 'info' => '图片上传失败' ], 422);
         }
-         return response()->json([ 'info' => '图片格式不正确' ], 422);
+    }
+
+    /**
+     * 根据base64格式创建作品图
+     * @param $base64_img
+     * @return \Illuminate\Http\JsonResponse|string
+     */
+    private function createProductionImage($base64_img)
+    {
+        if( preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_img, $img) ) {
+            //图片保存路径
+            $type = $img[2];
+            $upload_directory = 'uploads/img/'. date('Ymd',time()) . "/";
+            if(!file_exists($upload_directory))
+            {
+                mkdir($upload_directory, 0700);
+            }
+            //获取图片信息
+            $img = $this->getImageInfo(base64_decode(str_replace($img[1], '', $base64_img)));
+            $img->resize(2048, null, function ($constraint){
+                $constraint->aspectRatio();
+            });
+            //生成图片名称及路径
+            $new_file = $upload_directory . "photo_" . time();
+            $cropImageURL = $this->cropImage($img, $new_file);
+            $originImageURL = $img->save($new_file . ".{$type}");
+            if($originImageURL){
+                return json_encode($cropImageURL);
+            }
+            return response()->json([ 'info' => '图片上传失败' ], 422);
+        }
+    }
+    
+    /**
+     * 根据base64编码获取图片信息
+     * @param $image
+     * @return mixed
+     */
+    private function getImageInfo($image)
+    {
+        return Image::make($image);
+    }
+
+    /**
+     * 将用户上传的作品切图并保存
+     * @param \Intervention\Image\Image $image
+     * @param $path
+     * @return array
+     */
+    private function cropImage(\Intervention\Image\Image $image, $path)
+    {
+        $width = $image->width();
+        $height = $image->height();
+        $divide = env('PHOTO_CROP_UNIT');
+        $crop_width = $width / $divide;
+        $cropImageURL = [];
+        while($divide--)
+        {
+            $image->backup();
+            $crop_img = $image->crop($crop_width, $height, $crop_width * $divide, 0);
+            $url = $path . "_{$divide}" . '.jpeg';
+            $crop_img->save($url);
+            $cropImageURL[] = $url;
+            $image->reset();
+        }
+        return $cropImageURL;
     }
 
     /**
