@@ -19,7 +19,7 @@ export default [
     { path: '/portfolio', component: PortfolioPage, name: 'portfolio'},
     { path: '/user/:id', component: UserPage,
         children: [
-            { path: '', component: UserCentry, name: 'user'},
+            { path: '/', component: UserCentry, name: 'user'},
             { path: 'create', component: UserAddPro, name: 'userCreate'}
         ]
     },

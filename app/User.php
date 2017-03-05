@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,6 +31,11 @@ class User extends Authenticatable
 
     public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\Product')->orderBy('created_at','desc');
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->diffForHumans();
     }
 }

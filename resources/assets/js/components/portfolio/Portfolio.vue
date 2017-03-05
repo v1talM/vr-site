@@ -21,7 +21,7 @@
                     </router-link>
                     <div class="actions clearfix">
                         <router-link
-                                :to="{name: 'user', params: { id: vr.user.name }}"
+                                :to="{name: 'user', params: { id: vr.user.id }}"
                                 class="pull-left profile-avatar small"
                         >
                             <div class="initials">?</div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="user">
-                            <router-link :to="{name: 'user', params: { id: vr.user.name }}">{{ vr.user.name }}</router-link>
+                            <router-link :to="{name: 'user', params: { id: vr.user.id }}">{{ vr.user.name }}</router-link>
                             <div class="location small">{{ vr.pro_title }}</div>
                         </div>
                     </div>

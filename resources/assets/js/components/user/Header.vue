@@ -6,12 +6,12 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-4">
-                                <img class="img img-responsive avatar" src="./../../../imgs/city3.jpg">
+                                <img class="img img-responsive avatar" :src="userInfo.avatar" v-bind:alt="userInfo.name">
                             </div>
                             <div class="col-sm-8">
                                 <div class="media-body">
                                     <h3 class="user-name">
-                                        Ian Vital
+                                        {{ userInfo.name }}
                                     </h3>
                                     <div class="user-info-detail">
                                         <span class="item"> <i class="fa fa-map-marker"></i> 雅安市</span>
@@ -70,7 +70,10 @@
     }
 </style>
 <script>
+    import {mapState} from 'vuex'
     export default{
-
+        computed: mapState({
+            userInfo: state => state.vrUser.userInfo
+        })
     }
 </script>

@@ -13,12 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
 Route::group(['prefix' => 'product', 'middleware' => 'api'], function (){
     Route::post('/', 'API\ProductController@store')->middleware('auth:api');
     Route::get('/get', 'API\ProductController@getProductsWithLimit');
     Route::get('/total', 'API\ProductController@getProductsTotal');
     Route::get('/{id}', 'API\ProductController@getProductById')->where('id','[0-9]+');
+    Route::patch('/{id}', 'API\ProductController@generateProductionImage')->where('id', '[0-9]+');
+    Route::get('/featured', 'API\ProductController@getFeatured');
+});
+
+Route::group(['prefix' => 'user', 'middleware' => 'api'], function (){
+    Route::get('/', 'API\UserController@getUserInfoByToken')->middleware('auth:api');
+    Route::get('/{id}', 'API\UserController@getUserInfoById')->where('id', '[0-9]+');
+    Route::put('/{id}', 'API\UserController@getUserProducts')->where('id', '[0-9]+');
 });

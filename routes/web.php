@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 Route::post('/login', 'API\AuthController@login');
 Route::post('/signup', 'API\AuthController@regist');
+Route::get('/spider', 'SpiderController@spider');
+Route::get('/get', 'SpiderController@getImage');
+Route::get('/craw', 'SpiderController@crawImage');
 Route::get('/test', function () {
    $img = \Intervention\Image\Facades\Image::make('uploads/test.jpeg');
     dd($img);
