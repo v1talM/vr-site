@@ -213,7 +213,7 @@ class ProductController extends Controller
     public function getProductsWithLimit(Request $request)
     {
         $page = $request->input('page') ?: 1;
-        $limit = env('PRODUCT_LIMIT');
+        $limit = $request->input('size') ?: env('PRODUCT_LIMIT');
         $products = $this->productRepository->getProductsWithLimit($page, $limit);
         return response()->json([
             'info' => '获取数据成功!',

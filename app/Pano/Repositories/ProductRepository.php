@@ -51,11 +51,11 @@ class ProductRepository
     public function getProductsWithLimit($page = 1, $limit = 15)
     {
         if ( $page == 1) {
-            return $this->product->take($limit)->with('user')->get();
+            return $this->product->orderBy('id','desc')->take($limit)->with('user')->get();
         }
         $end = $page * $limit;
         $start = $end - $limit;
-        return $this->product->skip($start)->take($limit)->with('user')->get();
+        return $this->product->orderBy('id','desc')->skip($start)->take($limit)->with('user')->get();
     }
 
     /**
