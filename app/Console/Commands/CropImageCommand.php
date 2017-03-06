@@ -53,6 +53,9 @@ class CropImageCommand extends Command
         $file_name = "/thumb_" . $university->pano_id . '.jpg';
         $file = $public_path.$file_name;
         try{
+            $img->resize(null, 310, function ($constraint) {
+                $constraint->aspectRatio();
+            });
             $img->save($file, 90);
         }catch (ImageException $e){
             $this->info($e->getMessage());
