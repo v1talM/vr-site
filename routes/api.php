@@ -23,6 +23,8 @@ Route::group(['prefix' => 'product', 'middleware' => 'api'], function (){
 });
 
 Route::group(['prefix' => 'user', 'middleware' => 'api'], function (){
+    Route::post('/login', 'API\AuthController@login');
+    Route::post('/signup', 'API\AuthController@regist')->middleware('cors');
     Route::get('/', 'API\UserController@getUserInfoByToken')->middleware('auth:api');
     Route::get('/{id}', 'API\UserController@getUserInfoById')->where('id', '[0-9]+');
     Route::put('/{id}', 'API\UserController@getUserProducts')->where('id', '[0-9]+');
