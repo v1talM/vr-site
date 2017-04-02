@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function getUserInfoByToken(Request $request)
     {
-        $user_id= $request->user();
+        $user_id= $request->user()->id;
         return $this->getUserInfoById($user_id);
     }
 
