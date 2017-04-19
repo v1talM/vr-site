@@ -16,6 +16,6 @@ return [
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
     'maxAge' => 0,
-    'hosts' => [],
+    'hosts' => ['http://localhost:8080/'],
 ];
 
