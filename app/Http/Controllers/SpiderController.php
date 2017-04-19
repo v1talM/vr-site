@@ -27,7 +27,9 @@ class SpiderController extends Controller
     public function getImage(Request $request)
     {
         $page = empty($request->input('page'))?1:$request->input('page');
-        $res = $this->client->request('GET', 'http://www.detu.com/ajax/collection/getChannelList?page='.$page.'&pagesize=12&channelid=24&channelname=%E5%85%A8%E6%99%AF%E9%AB%98%E6%A0%A1', [
+        $size = empty($request->input('size'))?12:$request->input('size');
+        $channelId = empty($request->input('channelId'))?24:$request->input('channelId');
+        $res = $this->client->request('GET', 'http://www.detu.com/ajax/collection/getChannelList?page='.$page.'&pagesize='.$size.'&channelid='.$channelId.'&channelname=%E5%85%A8%E6%99%AF%E9%AB%98%E6%A0%A1', [
             'headers' => [
                 'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
             ],
