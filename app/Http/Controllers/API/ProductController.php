@@ -81,7 +81,7 @@ class ProductController extends Controller
             $des_url = $new_file . "_original.{$type}";
             $originImageURL = $img->save($des_url);
             if($cropImageURL){
-                return $originImageURL;
+                return $des_url;
             }
             return response()->json([ 'info' => '图片上传失败' ], 422);
         }
