@@ -78,9 +78,10 @@ class ProductController extends Controller
             //生成图片名称及路径
             $new_file = $upload_directory . "photo_" . time();
             $cropImageURL = $this->cropImage($img, $new_file);
-            $originImageURL = $img->save($new_file . "_original.{$type}");
+            $des_url = $new_file . "_original.{$type}";
+            $originImageURL = $img->save($des_url);
             if($cropImageURL){
-                return json_encode($cropImageURL);
+                return $originImageURL;
             }
             return response()->json([ 'info' => '图片上传失败' ], 422);
         }
