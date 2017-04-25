@@ -189,6 +189,7 @@ class ProductController extends Controller
             'pro_photo' => $pro_photo,
             'user_id' => $request->input('user_id')
         ];
+        dd($attributes);
         $this->productRepository->create($attributes);
         return response()->json([
             'info' => '作品上传成功!'
