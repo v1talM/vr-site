@@ -193,7 +193,6 @@ class ProductController extends Controller
             'deleted' => 0,
             'view' => 0
         ];
-        return response($attributes);
         $this->productRepository->create($attributes);
         return response()->json([
             'info' => '作品上传成功!'
