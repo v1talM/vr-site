@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\httpHeaders;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -15,7 +16,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Barryvdh\Cors\HandleCors::class
+        httpHeaders::class,
     ];
 
     /**
@@ -36,7 +37,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-            \Barryvdh\Cors\HandleCors::class,
+            httpHeaders::class,
         ],
     ];
 
