@@ -187,7 +187,11 @@ class ProductController extends Controller
             'pro_type' => $request->input('pro_type'),
             'pro_thumb' => $pro_thumb,
             'pro_photo' => $pro_photo,
-            'user_id' => $request->input('user_id')
+            'user_id' => $request->input('user_id'),
+            'featured' => 0,
+            'favorite' => 0,
+            'deleted' => 0,
+            'view' => 0
         ];
         dd($attributes);
         $this->productRepository->create($attributes);
