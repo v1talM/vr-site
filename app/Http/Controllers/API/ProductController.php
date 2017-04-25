@@ -182,7 +182,9 @@ class ProductController extends Controller
         }
         $attributes = [
             'pro_title' => $request->input('pro_title'),
+            'pro_description' => $request->input('pro_description'),
             'pro_bgm' => $pro_bgm,
+            'pro_type' => $request->input('pro_type'),
             'pro_thumb' => $pro_thumb,
             'pro_photo' => $pro_photo,
             'user_id' => $request->input('user_id')
