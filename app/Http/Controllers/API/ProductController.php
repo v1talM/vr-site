@@ -221,7 +221,8 @@ class ProductController extends Controller
     {
         $page = $request->input('page') ?: 1;
         $limit = $request->input('size') ?: env('PRODUCT_LIMIT');
-        $products = $this->productRepository->getProductsWithLimit($page, $limit);
+        $type = $request->input('type') ?: 0;
+        $products = $this->productRepository->getProductsWithLimit($page, $limit, $type);
         return response()->json([
             'info' => '获取数据成功!',
             'data' => $products

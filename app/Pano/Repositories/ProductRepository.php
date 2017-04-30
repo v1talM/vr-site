@@ -48,14 +48,26 @@ class ProductRepository
      * @param int $limit
      * @return mixed
      */
-    public function getProductsWithLimit($page = 1, $limit = 15)
+    public function getProductsWithLimit($page = 1, $limit = 15, $type = 0)
     {
-        if ( $page == 1) {
-            return $this->product->orderBy('id','desc')->take($limit)->with('user')->get();
+        $where = ($type == 0)?:['pro_type', '=', $type];
+        if ( $page == 1 ) {
+            return $this->product
+                ->$where
+                ->orderBy('id','desc')
+                ->take($limit)
+                ->with('user')
+                ->get();
         }
         $end = $page * $limit;
         $start = $end - $limit;
-        return $this->product->orderBy('id','desc')->skip($start)->take($limit)->with('user')->get();
+        return $this->product
+            ->$where
+            ->orderBy('id','desc')
+            ->skip($start)
+            ->take($limit)
+            ->with('user')
+            ->get();
     }
 
     /**
