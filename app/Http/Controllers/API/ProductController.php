@@ -41,10 +41,9 @@ class ProductController extends Controller
             }
             //获取图片信息
             $img = $this->getImageInfo(base64_decode(str_replace($img[1], '', $base64_img)));
-            $img_width = $img->width();
-            if( $img_width > 600 ){
-                $img->widen(600);
-            }
+            $img->resize(null, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            });
             //生成图片名称及路径
             $new_file = $upload_directory . "thumb_" . time() . ".{$type}";
             if($img->save($new_file)){
@@ -77,10 +76,11 @@ class ProductController extends Controller
             });
             //生成图片名称及路径
             $new_file = $upload_directory . "photo_" . time();
-            $cropImageURL = $this->cropImage($img, $new_file);
+//            取消切图
+//            $cropImageURL = $this->cropImage($img, $new_file);
             $des_url = $new_file . "_original.{$type}";
             $originImageURL = $img->save($des_url);
-            if($cropImageURL){
+            if($originImageURL){
                 return $des_url;
             }
             return response()->json([ 'info' => '图片上传失败' ], 422);
