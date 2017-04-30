@@ -52,7 +52,7 @@ class ProductRepository
     {
         if ( $page == 1 ) {
             return $this->product
-                ->where('pro_type', '=', $type)
+                ->where('pro_type', '=', [1,2,3])
                 ->orderBy('id','desc')
                 ->take($limit)
                 ->with('user')
