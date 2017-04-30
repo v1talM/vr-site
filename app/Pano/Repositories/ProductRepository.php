@@ -50,7 +50,7 @@ class ProductRepository
      */
     public function getProductsWithLimit($page = 1, $limit = 15, $type = 0)
     {
-        $where = ($type == 0)?:['pro_type', '=', $type];
+        $where = ($type == 0)?:"where('pro_type', '=', $type)";
         if ( $page == 1 ) {
             return $this->product
                 ->$where
@@ -62,7 +62,7 @@ class ProductRepository
         $end = $page * $limit;
         $start = $end - $limit;
         return $this->product
-            ->$where
+            ->where
             ->orderBy('id','desc')
             ->skip($start)
             ->take($limit)
