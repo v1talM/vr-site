@@ -50,23 +50,42 @@ class ProductRepository
      */
     public function getProductsWithLimit($page = 1, $limit = 15, $type = 0)
     {
-        if ( $page == 1 ) {
+        if ($type != 0){
+            if ( $page == 1 ) {
+                return $this->product
+                    ->where('pro_type', '=', $type)
+                    ->orderBy('id','desc')
+                    ->take($limit)
+                    ->with('user')
+                    ->get();
+            }
+            $end = $page * $limit;
+            $start = $end - $limit;
             return $this->product
-                ->where('pro_type', '=', [1,2,3])
+                ->where('pro_type', '=', $type)
                 ->orderBy('id','desc')
+                ->skip($start)
+                ->take($limit)
+                ->with('user')
+                ->get();
+        }else{
+            if ( $page == 1 ) {
+                return $this->product
+                    ->orderBy('id','desc')
+                    ->take($limit)
+                    ->with('user')
+                    ->get();
+            }
+            $end = $page * $limit;
+            $start = $end - $limit;
+            return $this->product
+                ->orderBy('id','desc')
+                ->skip($start)
                 ->take($limit)
                 ->with('user')
                 ->get();
         }
-        $end = $page * $limit;
-        $start = $end - $limit;
-        return $this->product
-            ->where('pro_type', '=', $type)
-            ->orderBy('id','desc')
-            ->skip($start)
-            ->take($limit)
-            ->with('user')
-            ->get();
+
     }
 
     /**
