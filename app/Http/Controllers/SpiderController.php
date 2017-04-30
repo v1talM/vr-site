@@ -64,7 +64,8 @@ class SpiderController extends Controller
                     $uncroped->delete();
                 }else{
                     $uncroped->is_craw = true;
-                    $uncroped->original = $result;
+                    $uncroped->original = $result['original'];
+                    $uncroped->description = $result['description'];
                     $uncroped->save();
                 }
             }else{
@@ -90,6 +91,7 @@ class SpiderController extends Controller
         ]);
         $data = json_decode($res->getBody()->getContents());
         $scene = $data->scenes[0];
+        $description = $data->imagedes;
         if($scene->width > 19000){
             return null;
         }
@@ -109,8 +111,11 @@ class SpiderController extends Controller
             }catch(ImageException $e){
 		        return null;
             }
-
-            return $new_file;
+            $datas = [
+                'original' => $new_file,
+                'description' => $description
+            ];
+            return $datas;
         }
         return 'video';
     }

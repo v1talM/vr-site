@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->string('pro_title')->comment('profile title');
             $table->string('pro_thumb')->default('')->comment('profile thumb image url');
-            $table->string('pro_description')->default('')->comment('profile descriptions');
+            $table->longText('pro_description')->nullable('')->comment('profile descriptions');
             $table->text('pro_photo')->comment('profile panorama photo url');
             $table->enum('pro_type',['1','2','3'])->default('1')->comment('profile type');
             $table->string('pro_bgm')->default('')->comment('profile background music url');

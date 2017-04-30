@@ -19,6 +19,7 @@ class CreateRepositoriesTable extends Migration
             $table->string('name');
             $table->string('thumburl');
             $table->string('original')->default('');
+            $table->longText('description')->nullable();
             $table->enum('pro_type',['1','2','3'])->default('1')->comment('profile type');
             $table->boolean('is_crop')->default(false);
             $table->boolean('is_craw')->default(false);

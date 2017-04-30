@@ -68,7 +68,14 @@ class CropImageCommand extends Command
                 'pro_title' => $university->name,
                 'pro_thumb' => $directory.$file_name,
                 'pro_photo' => $university->original,
-                'user_id' => 1
+                'pro_type' => $university->pro_type,
+                'pro_bgm' => 'uploads/audio/default_bgsound.mp3',
+                'pro_description' => $university->description,
+                'user_id' => 1,
+                'featured' => 0,
+                'favorite' => 0,
+                'deleted' => 0,
+                'view' => 0
             ]);
             $this->info('id: '. $product->id.' inserted');
         }catch (\Exception $e){
