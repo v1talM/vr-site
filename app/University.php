@@ -8,6 +8,6 @@ class University extends Model
 {
     protected $table = 'repositories';
     protected $fillable = [
-        'pano_id', 'name', 'thumburl', 'original', 'is_craw', 'is_crop'
+        'pano_id', 'name', 'thumburl', 'original', 'pro_type', 'is_craw', 'is_crop'
     ];
 }

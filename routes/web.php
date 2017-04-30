@@ -19,6 +19,4 @@ Route::get('/spider', 'SpiderController@spider');
 Route::get('/get', 'SpiderController@getImage');
 Route::get('/craw', 'SpiderController@crawImage');
 Route::get('/test', function () {
-   $img = \Intervention\Image\Facades\Image::make('uploads/test.jpeg');
-    dd($img);
 });

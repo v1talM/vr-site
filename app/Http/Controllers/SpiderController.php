@@ -35,6 +35,12 @@ class SpiderController extends Controller
             ],
             'verify' => false
         ]);
+        $channel = [
+          24 => 3,
+          16 => 2,
+          17 => 2,
+          15 => 1
+        ];
         $origin_data =  $res->getBody()->getContents();
         $data = json_decode($origin_data);
         $pano = [];
@@ -42,6 +48,7 @@ class SpiderController extends Controller
             $pano[$key]['pano_id'] = $item->pano->id;
             $pano[$key]['name'] = $item->name;
             $pano[$key]['thumburl'] = $item->pano->thumburl;
+            $pano[$key]['pro_type'] =  isset($channel[$channelId])?$channel[$channelId]:1;
             University::firstOrCreate($pano[$key]);
         }
         return '数据爬取成功，已保存到数据表';
