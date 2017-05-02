@@ -22,6 +22,10 @@ Route::group(['prefix' => 'product', 'middleware' => 'api'], function (){
     Route::get('/featured', 'API\ProductController@getFeatured');
 });
 
+Route::group(['prefix' => 's', 'middleware' => 'api'], function (){
+    Route::get('/', 'API\SearchController@search');
+});
+
 Route::group(['prefix' => 'user', 'middleware' => 'api'], function (){
     Route::post('/login', 'API\AuthController@login');
     Route::post('/signup', 'API\AuthController@regist')->middleware('cors');
