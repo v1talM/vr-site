@@ -185,7 +185,8 @@ return [
         /*
          * Custom Service Providers...
          */
-        App\Pano\Providers\SearchRepositoryProvider::class
+        App\Pano\Providers\SearchRepositoryProvider::class,
+        App\Pano\Providers\ProductRepositoryProvider::class,
     ],
 
     /*
