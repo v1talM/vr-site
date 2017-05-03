@@ -42,8 +42,7 @@ class SearchRepository implements SearchRepositoryInterface
     {
         $search = $this->product->search($query)->get()->toArray();
         $array = $this->setAttributes($search);
-        dd($array);
-        return $search;
+        return $array;
     }
 
     private function setAttributes(array $data)
