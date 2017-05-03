@@ -34,7 +34,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function create(array $attribute)
     {
-        return $this->product->user()->searchable($attribute);
+        return $this->product->create($attribute);
     }
 
     /**
