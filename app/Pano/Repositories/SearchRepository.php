@@ -41,6 +41,16 @@ class SearchRepository implements SearchRepositoryInterface
     public function getProfilesByQuery(string $query)
     {
         $search = $this->product->search($query)->get()->toArray();
+        $array = $this->setAttributes($search);
+        dd($array);
         return $search;
+    }
+
+    private function setAttributes(array $data)
+    {
+        foreach ($data as $key => $item){
+            $item['user'] = $this->user->whereId($item['user_id'])->get();
+        }
+        return $data;
     }
 }
