@@ -50,7 +50,7 @@ class SearchRepository implements SearchRepositoryInterface
     {
         $array = [];
         foreach ($data as $key => $item){
-            $item['user'] = $this->user->whereId($item['user_id'])->get();
+            $item['user'] = $this->user->whereId($item['user_id'])->first()->toArray();
             $array[$key] = $item;
         }
         return $array;
