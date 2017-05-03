@@ -196,8 +196,10 @@ class ProductController extends Controller
             'featured' => 0,
             'favorite' => 0,
             'deleted' => 0,
-            'view' => 0
+            'view' => 0,
+            'user' => $request->user()
         ];
+        dd($attributes);
         $this->productRepository->create($attributes);
         return response()->json([
             'info' => '作品上传成功!'
