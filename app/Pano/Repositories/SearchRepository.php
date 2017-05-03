@@ -36,7 +36,7 @@ class SearchRepository implements SearchRepositoryInterface
      */
     public function getProfilesByQuery(string $query)
     {
-        $search = $this->product->search($query)->get()->toArray();
+        $search = $this->product->search($query)->with('user')->get()->toArray();
         return $search;
     }
 }
