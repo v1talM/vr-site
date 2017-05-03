@@ -5,10 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
+/**
+ * Class Product
+ * @package App
+ */
 class Product extends Model
 {
     use Searchable;
-    protected $table='profiles';
+    /**
+     * @var string
+     */
+    protected $table ='profiles';
+    /**
+     * @var array
+     */
     protected $fillable = [
         'pro_title',
         'pro_thumb',
@@ -23,16 +33,25 @@ class Product extends Model
         'view'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
+    /**
+     * @return string
+     */
     public function searchableAs()
     {
         return 'profiles_index';
     }
 
+    /**
+     * @return array
+     */
     public function toSearchableArray()
     {
         $array = $this->toArray();

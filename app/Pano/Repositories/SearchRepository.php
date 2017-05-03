@@ -8,24 +8,35 @@
 
 namespace App\Pano\Repositories;
 
+use App\Pano\Contracts\SearchRepositoryInterface;
+use App\Product;
 
-use App\Pano\Contracts\ModelFactoryContract;
-
-class SearchRepository
+/**
+ * Class SearchRepository
+ * @package App\Pano\Repositories
+ */
+class SearchRepository implements SearchRepositoryInterface
 {
+    /**
+     * @var Product
+     */
     protected $product;
     /**
      * SearchRepository constructor.
      * @param $factory
      */
-    public function __construct(ModelFactoryContract $factory)
+    public function __construct(Product $product)
     {
-        $this->product = $factory->getProduct();
+        $this->product = $product;
     }
 
+    /**
+     * @param string $query
+     * @return array
+     */
     public function getProfilesByQuery(string $query)
     {
-        $search = $this->product->search($query)->get();
+        $search = $this->product->search($query)->get()->toArray();
         return $search;
     }
 }

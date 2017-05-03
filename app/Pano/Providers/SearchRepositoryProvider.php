@@ -2,11 +2,11 @@
 
 namespace App\Pano\Providers;
 
-use App\Pano\Contracts\ModelFactoryContract;
-use App\Pano\Factories\ModelFactory;
+use App\Pano\Contracts\SearchRepositoryInterface;
+use App\Pano\Repositories\SearchRepository;
 use Illuminate\Support\ServiceProvider;
 
-class ModelFactoryServiceProvider extends ServiceProvider
+class SearchRepositoryProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -25,6 +25,6 @@ class ModelFactoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ModelFactoryContract::class, ModelFactory::class);
+        $this->app->bind(SearchRepositoryInterface::class, SearchRepository::class);
     }
 }
