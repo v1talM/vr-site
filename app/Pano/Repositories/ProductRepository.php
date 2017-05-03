@@ -7,10 +7,14 @@
  * Time: 下午 12:04
  */
 namespace App\Pano\Repositories;
+use App\Pano\Contracts\ProductRepositoryInterface;
 use App\Product;
 
-class ProductRepository
+class ProductRepository implements ProductRepositoryInterface
 {
+    /**
+     * @var Product
+     */
     protected $product;
 
     /**
@@ -101,7 +105,7 @@ class ProductRepository
      * @param $id
      * @return mixed
      */
-    public function getProductById($id)
+    public function getProductById(int $id)
     {
         return $this->product->whereId($id)->with('user')->first();
     }
@@ -111,7 +115,7 @@ class ProductRepository
      * @param $limit
      * @return mixed
      */
-    public function getFeaturedWithLimit($limit)
+    public function getFeaturedWithLimit(int $limit)
     {
         return $this->product->where('featured', '=', 1)
                 ->orderBy('created_at','desc')

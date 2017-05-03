@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\AddProRequest;
-use App\Pano\Repositories\ProductRepository;
+use App\Pano\Contracts\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 
+/**
+ * Class ProductController
+ * @package App\Http\Controllers\API
+ */
 class ProductController extends Controller
 {
+
     /**
-     * @var ProductRepository
+     * @var ProductRepositoryInterface
      */
     protected $productRepository;
 
@@ -19,7 +24,7 @@ class ProductController extends Controller
      * ProductController constructor.
      * @param $productRepository
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
     }
