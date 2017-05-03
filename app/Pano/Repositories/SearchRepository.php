@@ -48,9 +48,11 @@ class SearchRepository implements SearchRepositoryInterface
 
     private function setAttributes(array $data)
     {
+        $array = [];
         foreach ($data as $key => $item){
             $item['user'] = $this->user->whereId($item['user_id'])->get();
+            $array[$key] = $item;
         }
-        return $data;
+        return $array;
     }
 }
