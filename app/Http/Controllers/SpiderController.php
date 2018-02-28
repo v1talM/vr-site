@@ -92,7 +92,7 @@ class SpiderController extends Controller
         $data = json_decode($res->getBody()->getContents());
         $scene = $data->scenes[0];
         $description = $data->imagedes;
-        if($scene->width > 19000){
+        if($scene->width > 15000){
             return null;
         }
         if($scene->isvideo != 'true'){
