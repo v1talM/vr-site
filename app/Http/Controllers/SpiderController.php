@@ -47,7 +47,7 @@ class SpiderController extends Controller
         foreach ($data->data as $key => $item){
             $pano[$key]['pano_id'] = $item->pano->id;
             $pano[$key]['name'] = $item->name;
-            $pano[$key]['thumburl'] = $item->pano->thumburl;
+            $pano[$key]['thumburl'] = $item->pano->cover;
             $pano[$key]['pro_type'] =  isset($channel[$channelId])?$channel[$channelId]:1;
             University::firstOrCreate($pano[$key]);
         }
