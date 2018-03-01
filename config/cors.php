@@ -11,11 +11,11 @@ return [
      |
      */
     'supportsCredentials' => false,
-    'allowedOrigins' => ['*'],
+    'allowedOrigins' => ['https://vr.sparki.cn/'],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
     'maxAge' => 0,
-    'hosts' => ['http://localhost:8080/'],
+    'hosts' => ['https://vr-server.sparki.cn/'],
 ];
 
