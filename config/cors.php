@@ -11,7 +11,7 @@ return [
      |
      */
     'supportsCredentials' => false,
-    'allowedOrigins' => ['https://vr.sparki.cn/'],
+    'allowedOrigins' => ['https://vr.sparki.cn', 'http://vr.sparki.cn'],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
