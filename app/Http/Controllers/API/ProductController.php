@@ -178,7 +178,7 @@ class ProductController extends Controller
         if($pro_bgm_base64){
             $pro_bgm = $this->base64DecodeAudio($pro_bgm_base64, 'bgm');
         }else{
-            $pro_bgm = '';
+            $pro_bgm = array_rand(config('bgm'), 1);
         }
         if((!$pro_thumb) || (!$pro_photo)){
             return response()->json([
